@@ -501,7 +501,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: media.width * 0.9,
                           width: media.width * 0.07,
                           backgroundColor: Colors.grey.shade100,
-                          foregrondColor: Colors.purple,
+                          foregroundColor: Colors.purple,
                           ratio: 0.5,
                           direction: Axis.vertical,
                           curve: Curves.fastLinearToSlowEaseIn,

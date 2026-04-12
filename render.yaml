@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: fitness-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerContext: ./backend
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./fitness.db
+      - key: REDIS_URL
+        value: redis://localhost:6379/0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "1440"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+      - key: PROJECT_NAME
+        value: Fitness Backend API
+      - key: VERSION
+        value: 1.0.0
+      - key: API_PREFIX
+        value: /api/v1
+      - key: DEBUG
+        value: "True"

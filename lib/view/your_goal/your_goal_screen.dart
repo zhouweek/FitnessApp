@@ -34,7 +34,7 @@ class _YourGoalScreenState extends State<YourGoalScreen> {
       "image": "assets/images/goal_3.png"
     }
   ];
-  CarouselController carouselController = CarouselController();
+  final carouselController = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
