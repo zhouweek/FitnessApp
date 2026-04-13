@@ -59,6 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         height: Platform.isIOS ? 70 : 65,
         color: Colors.transparent,
         padding: const EdgeInsets.all(0),
+        shape: const CircularNotchedRectangle(),
         child: Container(
           height: Platform.isIOS ? 70 : 65,
           decoration: const BoxDecoration(
@@ -72,51 +73,70 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              TabButton(
-                  icon: "assets/icons/home_icon.png",
-                  selectIcon: "assets/icons/home_select_icon.png",
-                  isActive: selectTab == 0,
-                  onTap: () {
-                    if (mounted) {
-                      setState(() {
-                        selectTab = 0;
-                      });
-                    }
-                  }),
-              TabButton(
-                  icon: "assets/icons/activity_icon.png",
-                  selectIcon: "assets/icons/activity_select_icon.png",
-                  isActive: selectTab == 1,
-                  onTap: () {
-                    if (mounted) {
-                      setState(() {
-                        selectTab = 1;
-                      });
-                    }
-                  }),
-              const SizedBox(width: 30),
-              TabButton(
-                  icon: "assets/icons/camera_icon.png",
-                  selectIcon: "assets/icons/camera_select_icon.png",
-                  isActive: selectTab == 2,
-                  onTap: () {
-                    if (mounted) {
-                      setState(() {
-                        selectTab = 2;
-                      });
-                    }
-                  }),
-              TabButton(
-                  icon: "assets/icons/user_icon.png",
-                  selectIcon: "assets/icons/user_select_icon.png",
-                  isActive: selectTab == 3,
-                  onTap: () {
-                    if (mounted) {
-                      setState(() {
-                        selectTab = 3;
-                      });
-                    }
-                  }),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TabButton(
+                      icon: "assets/icons/home_icon.png",
+                      selectIcon: "assets/icons/home_select_icon.png",
+                      isActive: selectTab == 0,
+                      onTap: () {
+                        if (mounted) {
+                          setState(() {
+                            selectTab = 0;
+                          });
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 40),
+                    TabButton(
+                      icon: "assets/icons/activity_icon.png",
+                      selectIcon: "assets/icons/activity_select_icon.png",
+                      isActive: selectTab == 1,
+                      onTap: () {
+                        if (mounted) {
+                          setState(() {
+                            selectTab = 1;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TabButton(
+                      icon: "assets/icons/camera_icon.png",
+                      selectIcon: "assets/icons/camera_select_icon.png",
+                      isActive: selectTab == 2,
+                      onTap: () {
+                        if (mounted) {
+                          setState(() {
+                            selectTab = 2;
+                          });
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 40),
+                    TabButton(
+                      icon: "assets/icons/user_icon.png",
+                      selectIcon: "assets/icons/user_select_icon.png",
+                      isActive: selectTab == 3,
+                      onTap: () {
+                        if (mounted) {
+                          setState(() {
+                            selectTab = 3;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -131,13 +151,13 @@ class TabButton extends StatelessWidget {
   final bool isActive;
   final VoidCallback onTap;
 
-  const TabButton(
-      {Key? key,
-      required this.icon,
-      required this.selectIcon,
-      required this.isActive,
-      required this.onTap})
-      : super(key: key);
+  const TabButton({
+    Key? key,
+    required this.icon,
+    required this.selectIcon,
+    required this.isActive,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

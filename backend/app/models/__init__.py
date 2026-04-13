@@ -1,4 +1,4 @@
-from app.models.user import User
+from app.models.user import User, GenderEnum, FitnessLevelEnum
 from app.models.fitness_goal import FitnessGoal
 from app.models.daily_target import DailyTarget
 from app.models.workout_category import WorkoutCategory
@@ -9,6 +9,8 @@ from app.models.user_token import UserToken
 
 __all__ = [
     "User",
+    "GenderEnum",
+    "FitnessLevelEnum",
     "FitnessGoal",
     "DailyTarget",
     "WorkoutCategory",

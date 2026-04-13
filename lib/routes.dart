@@ -6,7 +6,10 @@ import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:fitnessapp/view/notification/notification_screen.dart';
 import 'package:fitnessapp/view/on_boarding/on_boarding_screen.dart';
 import 'package:fitnessapp/view/on_boarding/start_screen.dart';
+import 'package:fitnessapp/view/profile/activity_history_screen.dart';
 import 'package:fitnessapp/view/profile/complete_profile_screen.dart';
+import 'package:fitnessapp/view/profile/edit_profile_screen.dart';
+import 'package:fitnessapp/view/profile/workout_progress_screen.dart';
 import 'package:fitnessapp/view/signup/signup_screen.dart';
 import 'package:fitnessapp/view/welcome/welcome_screen.dart';
 import 'package:fitnessapp/view/workout_schedule_view/workout_schedule_view.dart';
@@ -19,6 +22,9 @@ final Map<String, WidgetBuilder> routes = {
   StartScreen.routeName: (context) => const StartScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
+  EditProfileScreen.routeName: (context) => const EditProfileScreen(),
+  ActivityHistoryScreen.routeName: (context) => const ActivityHistoryScreen(),
+  WorkoutProgressScreen.routeName: (context) => const WorkoutProgressScreen(),
   YourGoalScreen.routeName: (context) => const YourGoalScreen(),
   WelcomeScreen.routeName: (context) => const WelcomeScreen(),
   DashboardScreen.routeName: (context) => const DashboardScreen(),

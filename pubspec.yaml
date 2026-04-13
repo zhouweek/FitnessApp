@@ -45,6 +45,9 @@ dependencies:
   animated_toggle_switch: ^0.6.2
   flutter_native_splash: ^2.3.1
   readmore: ^2.1.0
+  intl: ^0.20.2
+  flutter_localizations:
+    sdk: flutter
   calendar_agenda:
     path: dev_lib/calendar_agenda/
 

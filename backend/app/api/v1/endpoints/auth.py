@@ -13,18 +13,19 @@ router = APIRouter(prefix="/auth", tags=["认证"])
 @router.post("/register", response_model=ResponseModel[UserResponse])
 def register(user_data: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(
-        (User.username == user_data.username) | (User.email == user_data.email)
+        (User.username == user_data.username) | (User.phone == user_data.phone)
     ).first()
     
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="用户名或邮箱已存在"
+            detail="用户名或手机号已存在"
         )
     
     user = User(
         username=user_data.username,
         email=user_data.email,
+        phone=user_data.phone,
         password_hash=get_password_hash(user_data.password),
         name=user_data.name,
         gender=user_data.gender,
@@ -43,7 +44,16 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=ResponseModel[Token])
 def login(login_data: LoginRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.username == login_data.username).first()
+    # 优先使用手机号登录，如果没有提供手机号则使用用户名
+    if login_data.phone:
+        user = db.query(User).filter(User.phone == login_data.phone).first()
+    elif login_data.username:
+        user = db.query(User).filter(User.username == login_data.username).first()
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="请提供用户名或手机号"
+        )
     
     if not user or not verify_password(login_data.password, user.password_hash):
         raise HTTPException(

@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
 from decimal import Decimal
+from app.models import GenderEnum, FitnessLevelEnum
 
 
 class UserBase(BaseModel):
@@ -9,11 +10,15 @@ class UserBase(BaseModel):
     email: EmailStr
 
 
-class UserCreate(UserBase):
+class UserCreate(BaseModel):
+    phone: str
     password: str
+    username: str
+    email: Optional[EmailStr] = None
     name: Optional[str] = None
     gender: Optional[str] = None
     age: Optional[int] = None
+    birthday: Optional[datetime] = None
     height: Optional[Decimal] = None
     weight: Optional[Decimal] = None
     fitness_level: Optional[str] = None
@@ -23,22 +28,25 @@ class UserUpdate(BaseModel):
     name: Optional[str] = None
     gender: Optional[str] = None
     age: Optional[int] = None
+    birthday: Optional[datetime] = None
     height: Optional[Decimal] = None
     weight: Optional[Decimal] = None
     fitness_level: Optional[str] = None
     avatar: Optional[str] = None
 
 
-class UserResponse(UserBase):
+class UserResponse(BaseModel):
     id: int
+    username: str
+    phone: str
+    email: Optional[str] = None
     name: Optional[str] = None
     gender: Optional[str] = None
     age: Optional[int] = None
-    height: Optional[Decimal] = None
-    weight: Optional[Decimal] = None
+    birthday: Optional[datetime] = None
+    height: Optional[float] = None
+    weight: Optional[float] = None
     fitness_level: Optional[str] = None
-    avatar: Optional[str] = None
-    created_at: datetime
 
     class Config:
         from_attributes = True
@@ -55,5 +63,6 @@ class TokenData(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    username: str
+    username: Optional[str] = None
+    phone: Optional[str] = None
     password: str

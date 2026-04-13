@@ -4,8 +4,8 @@ import '../utils/app_colors.dart';
 
 class RoundGradientButton extends StatelessWidget {
   final String title;
-  final Function() onPressed;
-  const RoundGradientButton({Key? key, required this.title, required this.onPressed}) : super(key: key);
+  final Function()? onPressed;
+  const RoundGradientButton({Key? key, required this.title, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

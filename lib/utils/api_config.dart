@@ -1,5 +1,10 @@
 class ApiConfig {
-  static const String baseUrl = 'http://localhost:8000/api/v1';
+  static const String host = '192.168.1.116';
+  static const int port = 8000;
+  static const String protocol = 'http';
+  static const String apiPrefix = '/api/v1';
+  
+  static const String baseUrl = '$protocol://$host:$port$apiPrefix';
   
   static const String authRegister = '/auth/register';
   static const String authLogin = '/auth/login';
