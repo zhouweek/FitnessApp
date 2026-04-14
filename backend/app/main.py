@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.v1 import api_router
@@ -41,3 +41,17 @@ def root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+
+@app.api_route("/debug", methods=["GET", "POST", "PUT", "DELETE"])
+async def debug_request(request: Request):
+    headers = dict(request.headers)
+    return {
+        "method": request.method,
+        "url": str(request.url),
+        "headers": headers,
+        "client": {
+            "host": request.client.host if request.client else None,
+            "port": request.client.port if request.client else None
+        }
+    }

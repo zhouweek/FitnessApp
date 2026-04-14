@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api_config.dart';
 
@@ -8,6 +10,8 @@ class ApiService {
   factory ApiService() => _instance;
   ApiService._internal();
 
+  late final http.Client _httpClient;
+
   String? token;
   String? username;
 
@@ -15,6 +19,10 @@ class ApiService {
     final prefs = await SharedPreferences.getInstance();
     token = prefs.getString('access_token');
     username = prefs.getString('username');
+    
+    final ioClient = HttpClient()
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    _httpClient = IOClient(ioClient);
   }
 
   Future<void> saveToken(String accessToken, String refreshToken) async {
@@ -51,6 +59,7 @@ class ApiService {
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
     };
     if (withAuth && token != null) {
       headers['Authorization'] = 'Bearer $token';
@@ -65,7 +74,7 @@ class ApiService {
     print('httpapi: Headers: $headers');
     
     try {
-      final response = await http.get(
+      final response = await _httpClient.get(
         Uri.parse(url),
         headers: headers,
       ).timeout(const Duration(seconds: 30));
@@ -88,7 +97,7 @@ class ApiService {
     print('httpapi: Body: ${jsonEncode(body)}');
     
     try {
-      final response = await http.post(
+      final response = await _httpClient.post(
         Uri.parse(url),
         headers: headers,
         body: jsonEncode(body),
@@ -112,7 +121,7 @@ class ApiService {
     print('httpapi: Body: ${jsonEncode(body)}');
     
     try {
-      final response = await http.put(
+      final response = await _httpClient.put(
         Uri.parse(url),
         headers: headers,
         body: jsonEncode(body),
@@ -135,7 +144,7 @@ class ApiService {
     print('httpapi: Headers: $headers');
     
     try {
-      final response = await http.delete(
+      final response = await _httpClient.delete(
         Uri.parse(url),
         headers: headers,
       ).timeout(const Duration(seconds: 30));
