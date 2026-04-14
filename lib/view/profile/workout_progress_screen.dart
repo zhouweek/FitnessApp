@@ -161,7 +161,7 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${plan.current} ${plan.unit} / ${plan.total} ${plan.unit}',
+                      '${plan.current} ${plan.unit.intl(context)} / ${plan.total} ${plan.unit.intl(context)}',
                       style: const TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 12,
