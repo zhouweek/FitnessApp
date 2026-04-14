@@ -1,5 +1,6 @@
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import '../../../i18n/intl_extension.dart';
 
 class TodayTargetCell extends StatelessWidget {
   final String icon;
@@ -51,7 +52,7 @@ class TodayTargetCell extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    title,
+                    title.intl(context),
                     style: TextStyle(
                       color: AppColors.blackColor,
                       fontSize: 12,

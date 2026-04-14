@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/activity/widgets/upcoming_workout_row.dart';
 import 'package:fitnessapp/view/activity/widgets/what_train_row.dart';
@@ -19,33 +20,33 @@ class _ActivityScreenState extends State<ActivityScreen> {
   List latestArr = [
     {
       "image": "assets/images/Workout1.png",
-      "title": "Fullbody Workout",
-      "time": "Today, 03:00pm"
+      "title": "fullbody_workout",
+      "time": "today_03_00pm"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Upperbody Workout",
-      "time": "June 05, 02:00pm"
+      "title": "upperbody_workout",
+      "time": "june_05_02_00pm"
     },
   ];
 
   List whatArr = [
     {
       "image": "assets/images/what_1.png",
-      "title": "Fullbody Workout",
-      "exercises": "11 Exercises",
+      "title": "fullbody_workout",
+      "exercises": "11_exercises",
       "time": "32mins"
     },
     {
       "image": "assets/images/what_2.png",
-      "title": "Lowebody Workout",
-      "exercises": "12 Exercises",
+      "title": "lowerbody_workout",
+      "exercises": "12_exercises",
       "time": "40mins"
     },
     {
       "image": "assets/images/what_3.png",
-      "title": "AB Workout",
-      "exercises": "14 Exercises",
+      "title": "ab_workout",
+      "exercises": "14_exercises",
       "time": "20mins"
     }
   ];
@@ -64,8 +65,8 @@ class _ActivityScreenState extends State<ActivityScreen> {
               centerTitle: true,
               elevation: 0,
               // pinned: true,
-              title: const Text(
-                "Workout Tracker",
+              title: Text(
+                "workout_tracker".intl(context),
                 style: TextStyle(
                     color: AppColors.whiteColor,
                     fontSize: 16,

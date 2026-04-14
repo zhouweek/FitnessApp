@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,8 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
   // 模拟健身计划数据
   final List<WorkoutPlan> workoutPlans = [
     WorkoutPlan(
-      name: 'Weekly Running Challenge',
-      goal: 'Run 30km in a week',
+      name: 'weekly_running_challenge',
+      goal: 'run_30km_in_a_week',
       progress: 0.7,
       current: 21,
       total: 30,
@@ -22,8 +23,8 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
       image: 'assets/images/Workout1.png',
     ),
     WorkoutPlan(
-      name: 'Upper Body Strength',
-      goal: 'Complete 50 push-ups',
+      name: 'upper_body_strength',
+      goal: 'complete_50_push_ups',
       progress: 0.6,
       current: 30,
       total: 50,
@@ -31,8 +32,8 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
       image: 'assets/images/pp_2.png',
     ),
     WorkoutPlan(
-      name: 'Yoga Practice',
-      goal: 'Practice 5 times a week',
+      name: 'yoga_practice',
+      goal: 'practice_5_times_a_week',
       progress: 0.4,
       current: 2,
       total: 5,
@@ -40,8 +41,8 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
       image: 'assets/images/pp_1.png',
     ),
     WorkoutPlan(
-      name: 'Cycling Challenge',
-      goal: 'Cycle 50km in a week',
+      name: 'cycling_challenge',
+      goal: 'cycle_50km_in_a_week',
       progress: 0.3,
       current: 15,
       total: 50,
@@ -58,8 +59,8 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
         backgroundColor: AppColors.whiteColor,
         centerTitle: true,
         elevation: 0,
-        title: const Text(
-          "Workout Progress",
+        title: Text(
+          "workout_progress".intl(context),
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 16,
@@ -114,7 +115,7 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            plan.name,
+                            plan.name.intl(context),
                             style: const TextStyle(
                               color: AppColors.blackColor,
                               fontSize: 16,
@@ -123,7 +124,7 @@ class _WorkoutProgressScreenState extends State<WorkoutProgressScreen> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            plan.goal,
+                            plan.goal.intl(context),
                             style: const TextStyle(
                               color: AppColors.grayColor,
                               fontSize: 12,

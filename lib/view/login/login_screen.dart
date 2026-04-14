@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../common_widgets/round_gradient_button.dart';
 import '../../common_widgets/round_textfield.dart';
 import 'package:fitnessapp/view/dashboard/dashboard_screen.dart';
+import '../../i18n/intl_extension.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = "/LoginScreen";
@@ -87,8 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: media.width*0.03,
                     ),
-                    const Text(
-                      "Hey there,",
+                    Text(
+                      "hey_there".intl(context),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.blackColor,
@@ -97,8 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: media.width*0.01),
-                    const Text(
-                      "Welcome Back",
+                    Text(
+                      "welcome_back".intl(context),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.blackColor,
@@ -112,13 +113,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: media.width*0.05),
               RoundTextField(
-                  hintText: "Phone",
+                  hintText: "phone".intl(context),
                   icon: "assets/icons/message_icon.png",
                   textInputType: TextInputType.phone,
                   textEditingController: phoneController),
               SizedBox(height: media.width*0.05),
               RoundTextField(
-                hintText: "Password",
+                hintText: "password".intl(context),
                 icon: "assets/icons/lock_icon.png",
                 textInputType: TextInputType.text,
                 isObscureText: !isPasswordVisible,
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textEditingController: passwordController,
               ),
               SizedBox(height: media.width*0.03),
-              const Text("Forgot your password?",
+              Text("forgot_password".intl(context),
                   style: TextStyle(
                     color: AppColors.grayColor,
                     fontSize: 10,
@@ -160,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               const Spacer(),
               RoundGradientButton(
-                title: isLoading ? "Logging in..." : "Login",
+                title: isLoading ? "logging_in".intl(context) : "login".intl(context),
                 onPressed: isLoading ? null : () { _login(); },
               ),
 
@@ -176,11 +177,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 14,
                             fontWeight: FontWeight.w400),
                         children: [
-                          const TextSpan(
-                            text: "Don’t have an account yet? ",
+                          TextSpan(
+                            text: "dont_have_account".intl(context),
                           ),
                           TextSpan(
-                              text: "Register",
+                              text: "register".intl(context),
                               style: TextStyle(
                                   color: AppColors.secondaryColor1,
                                   fontSize: 14,

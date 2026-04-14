@@ -1,5 +1,6 @@
 import 'package:fitnessapp/common_widgets/round_button.dart';
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   List photoArr = [
     {
-      "time": "2 June",
+      "time": "june_2",
       "photo": [
         "assets/images/pp_1.png",
         "assets/images/pp_2.png",
@@ -22,7 +23,7 @@ class _CameraScreenState extends State<CameraScreen> {
       ]
     },
     {
-      "time": "5 May",
+      "time": "may_5",
       "photo": [
         "assets/images/pp_5.png",
         "assets/images/pp_6.png",
@@ -43,7 +44,7 @@ class _CameraScreenState extends State<CameraScreen> {
         leadingWidth: 0,
         leading: const SizedBox(),
         title: Text(
-          "Progress Photo",
+          "progress_photo".intl(context),
           style: TextStyle(
               color: AppColors.blackColor, fontSize: 16, fontWeight: FontWeight.w700),
         ),

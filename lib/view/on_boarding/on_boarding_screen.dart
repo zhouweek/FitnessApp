@@ -15,27 +15,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   PageController pageController = PageController();
   List pageList = [
     {
-      "title": "Track Your Goal",
-      "subtitle":
-          "Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals",
+      "title": "track_your_goal",
+      "subtitle": "track_your_goal_subtitle",
       "image": "assets/images/on_board1.png"
     },
     {
-      "title": "Get Burn",
-      "subtitle":
-          "Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
+      "title": "get_burn",
+      "subtitle": "get_burn_subtitle",
       "image": "assets/images/on_board2.png"
     },
     {
-      "title": "Eat Well",
-      "subtitle":
-          "Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun",
+      "title": "eat_well",
+      "subtitle": "eat_well_subtitle",
       "image": "assets/images/on_board3.png"
     },
     {
-      "title": "Improve Sleep Quality",
-      "subtitle":
-          "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
+      "title": "improve_sleep_quality",
+      "subtitle": "improve_sleep_quality_subtitle",
       "image": "assets/images/on_board4.png"
     }
   ];

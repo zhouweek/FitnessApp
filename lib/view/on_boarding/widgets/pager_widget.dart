@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
+import '../../../i18n/intl_extension.dart';
 
 class PagerWidget extends StatelessWidget {
 
@@ -25,12 +26,12 @@ class PagerWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 15),
-                  Text(obj["title"],style:const TextStyle(color: AppColors.blackColor,fontSize: 24,fontWeight: FontWeight.w700),),
+                  Text(obj["title"].toString().intl(context),style:const TextStyle(color: AppColors.blackColor,fontSize: 24,fontWeight: FontWeight.w700),),
                   const SizedBox(height: 15),
                   SizedBox(
                     width: 315,
                     child: Text(
-                      obj["subtitle"],
+                      obj["subtitle"].toString().intl(context),
                       style: const TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 14,

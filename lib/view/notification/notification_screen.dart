@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/notification/widgets/notification_row.dart';
 import 'package:flutter/material.dart';
@@ -15,33 +16,33 @@ class _NotificationScreenState extends State<NotificationScreen> {
   List notificationArr = [
     {
       "image": "assets/images/Workout1.png",
-      "title": "Hey, it’s time for lunch",
-      "time": "About 1 minutes ago"
+      "title": "hey_its_time_for_lunch",
+      "time": "about_1_minutes_ago"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Don’t miss your lowerbody workout",
-      "time": "About 3 hours ago"
+      "title": "dont_miss_your_lowerbody_workout",
+      "time": "about_3_hours_ago"
     },
     {
       "image": "assets/images/Workout3.png",
-      "title": "Hey, let’s add some meals for your b",
-      "time": "About 3 hours ago"
+      "title": "hey_lets_add_some_meals",
+      "time": "about_3_hours_ago"
     },
     {
       "image": "assets/images/Workout1.png",
-      "title": "Congratulations, You have finished A..",
-      "time": "29 May"
+      "title": "congratulations_you_have_finished",
+      "time": "29_may"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Hey, it’s time for lunch",
-      "time": "8 April"
+      "title": "hey_its_time_for_lunch",
+      "time": "8_april"
     },
     {
       "image": "assets/images/Workout3.png",
-      "title": "Ups, You have missed your Lowerbo...",
-      "time": "8 April"
+      "title": "ups_you_have_missed_your_workout",
+      "time": "8_april"
     },
   ];
 
@@ -73,8 +74,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),
             ),
           ),
-          title: const Text(
-            "Notification",
+          title: Text(
+            "notification".intl(context),
             style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 16,

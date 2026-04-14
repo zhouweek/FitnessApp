@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,43 +14,43 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
   // 模拟活动历史数据
   final List<Activity> activities = [
     Activity(
-      type: 'Running',
+      type: 'running',
       duration: '30 min',
       distance: '5 km',
       calories: '300 kcal',
-      time: 'Today, 8:30 AM',
+      time: 'today_8_30_am',
       image: 'assets/images/Workout1.png',
     ),
     Activity(
-      type: 'Cycling',
+      type: 'cycling',
       duration: '45 min',
       distance: '15 km',
       calories: '450 kcal',
-      time: 'Yesterday, 6:00 PM',
+      time: 'yesterday_6_00_pm',
       image: 'assets/images/Workout2.png',
     ),
     Activity(
-      type: 'Swimming',
+      type: 'swimming',
       duration: '20 min',
       distance: '1 km',
       calories: '200 kcal',
-      time: '2 days ago, 10:00 AM',
+      time: '2_days_ago_10_00_am',
       image: 'assets/images/Workout3.png',
     ),
     Activity(
-      type: 'Yoga',
+      type: 'yoga',
       duration: '60 min',
       distance: '-',
       calories: '150 kcal',
-      time: '3 days ago, 7:00 PM',
+      time: '3_days_ago_7_00_pm',
       image: 'assets/images/pp_1.png',
     ),
     Activity(
-      type: 'Running',
+      type: 'running',
       duration: '40 min',
       distance: '8 km',
       calories: '400 kcal',
-      time: '4 days ago, 6:30 AM',
+      time: '4_days_ago_6_30_am',
       image: 'assets/images/Workout1.png',
     ),
   ];
@@ -62,8 +63,8 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
         backgroundColor: AppColors.whiteColor,
         centerTitle: true,
         elevation: 0,
-        title: const Text(
-          "Activity History",
+        title: Text(
+          "activity_history".intl(context),
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 16,
@@ -115,7 +116,7 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        activity.type,
+                        activity.type.intl(context),
                         style: const TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 16,
@@ -124,7 +125,7 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        activity.time,
+                        activity.time.intl(context),
                         style: const TextStyle(
                           color: AppColors.grayColor,
                           fontSize: 12,
@@ -134,7 +135,7 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
                       Row(
                         children: [
                           Text(
-                            'Duration: ${activity.duration}',
+                            '${"duration".intl(context)}: ${activity.duration}',
                             style: const TextStyle(
                               color: AppColors.grayColor,
                               fontSize: 12,
@@ -142,7 +143,7 @@ class _ActivityHistoryScreenState extends State<ActivityHistoryScreen> {
                           ),
                           const SizedBox(width: 15),
                           Text(
-                            'Distance: ${activity.distance}',
+                            '${"distance".intl(context)}: ${activity.distance}',
                             style: const TextStyle(
                               color: AppColors.grayColor,
                               fontSize: 12,

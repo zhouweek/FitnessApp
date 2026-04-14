@@ -1,4 +1,5 @@
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class FinishWorkoutScreen extends StatelessWidget {
               ),
 
               Text(
-                "Congratulations, You Have Finished Your Workout",
+                "congratulations_finished_workout".intl(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.blackColor,
@@ -46,7 +47,7 @@ class FinishWorkoutScreen extends StatelessWidget {
               ),
 
               Text(
-                "Exercises is king and nutrition is queen. Combine the two and you will have a kingdom",
+                "exercise_is_king".intl(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.grayColor,
@@ -69,7 +70,7 @@ class FinishWorkoutScreen extends StatelessWidget {
 
               const Spacer(),
               RoundGradientButton(
-                  title: "Back To Home",
+                  title: "back_to_home".intl(context),
                   onPressed: () {
                     Navigator.pop(context);
                   }),

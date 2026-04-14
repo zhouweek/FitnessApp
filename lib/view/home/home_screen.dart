@@ -11,6 +11,7 @@ import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import '../../common_widgets/round_button.dart';
 import '../../common_widgets/round_gradient_button.dart';
 import '../notification/notification_screen.dart';
+import '../../i18n/intl_extension.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "/HomeScreen";
@@ -60,11 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ];
 
   List waterArr = [
-    {"title": "6am - 8am", "subtitle": "600ml"},
-    {"title": "9am - 11am", "subtitle": "500ml"},
-    {"title": "11am - 2pm", "subtitle": "1000ml"},
-    {"title": "2pm - 4pm", "subtitle": "700ml"},
-    {"title": "4pm - now", "subtitle": "900ml"}
+    {"title": "6am_8am", "subtitle": "600ml"},
+    {"title": "9am_11am", "subtitle": "500ml"},
+    {"title": "11am_2pm", "subtitle": "1000ml"},
+    {"title": "2pm_4pm", "subtitle": "700ml"},
+    {"title": "4pm_now", "subtitle": "900ml"}
   ];
 
   List<LineChartBarData> get lineBarsData1 => [
@@ -118,21 +119,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List lastWorkoutArr = [
     {
-      "name": "Full Body Workout",
+      "name": "full_body_workout",
       "image": "assets/images/Workout1.png",
       "kcal": "180",
       "time": "20",
       "progress": 0.3
     },
     {
-      "name": "Lower Body Workout",
+      "name": "lower_body_workout",
       "image": "assets/images/Workout2.png",
       "kcal": "200",
       "time": "30",
       "progress": 0.4
     },
     {
-      "name": "Ab Workout",
+      "name": "ab_workout",
       "image": "assets/images/Workout3.png",
       "kcal": "300",
       "time": "40",
@@ -179,18 +180,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome Back,",
+                          "welcome_back".intl(context),
                           style: TextStyle(
                             color: AppColors.midGrayColor,
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          "Stefani Wong",
+                          "stefani_wong".intl(context),
                           style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 20,
@@ -246,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  "You have a normal weight",
+                                  "you_have_normal_weight".intl(context),
                                   style: TextStyle(
                                     color:
                                         AppColors.whiteColor.withOpacity(0.7),
@@ -262,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 35,
                                     width: 100,
                                     child: RoundButton(
-                                        title: "View More", onPressed: () {}),
+                                        title: "view_more".intl(context), onPressed: () {}),
                                   ),
                                 )
                               ],
@@ -301,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Today Target",
+                        "today_target".intl(context),
                         style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 14,
@@ -312,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 75,
                         height: 30,
                         child: RoundButton(
-                          title: "check",
+                          title: "check".intl(context),
                           type: RoundButtonType.primaryBG,
                           onPressed: () {
                             Navigator.pushNamed(context, ActivityTrackerScreen.routeName);
@@ -324,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: media.width * 0.05),
                 Text(
-                  "Activity Status",
+                  "activity_status".intl(context),
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -351,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Heart Rate",
+                                "heart_rate".intl(context),
                                 style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 12,
@@ -520,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Water Intake",
+                              "water_intake".intl(context),
                               style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 12,
@@ -548,7 +549,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: media.width * 0.03),
                             Text(
-                              "Real time updates",
+                              "real_time_updates".intl(context),
                               style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 10,
@@ -597,7 +598,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         SizedBox(height: media.width * 0.01),
                                         Text(
-                                          obj["title"].toString(),
+                                          obj["title"].toString().intl(context),
                                           style: TextStyle(
                                               color: AppColors.blackColor,
                                               fontSize: 11,
@@ -658,7 +659,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Sleep",
+                                "sleep".intl(context),
                                 style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 12,
@@ -709,7 +710,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Calories",
+                                "calories".intl(context),
                                 style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 12,
@@ -753,7 +754,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 colors: AppColors.primaryG),
                                             borderRadius: BorderRadius.circular(
                                                 media.width * 0.075)),
-                                        child: Text("230kCal\nleft",
+                                        child: Text("230kCal\n${"left".intl(context)}",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: AppColors.whiteColor,
@@ -785,7 +786,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Workout Progress",
+                      "workout_progress".intl(context),
                       style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -800,11 +801,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(15)),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton(
-                          items: ["Weekly", "Monthly"]
+                          items: ["weekly", "monthly"]
                               .map((name) => DropdownMenuItem(
                                   value: name,
                                   child: Text(
-                                    name,
+                                    name.intl(context),
                                     style: const TextStyle(
                                         color: AppColors.blackColor,
                                         fontSize: 14),
@@ -813,7 +814,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onChanged: (value) {},
                           icon: Icon(Icons.expand_more,
                               color: AppColors.whiteColor),
-                          hint: Text("Weekly",
+                          hint: Text("weekly".intl(context),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: AppColors.whiteColor, fontSize: 12)),
@@ -943,7 +944,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Latest Workout",
+                      "latest_workout".intl(context),
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 16,
@@ -952,7 +953,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        "See More",
+                        "see_more".intl(context),
                         style: TextStyle(
                             color: AppColors.grayColor,
                             fontSize: 14,

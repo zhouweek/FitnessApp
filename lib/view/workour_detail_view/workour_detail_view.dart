@@ -1,4 +1,5 @@
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/exercises_set_section.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/icon_title_next_row.dart';
@@ -20,20 +21,20 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
   List latestArr = [
     {
       "image": "assets/images/Workout1.png",
-      "title": "Fullbody Workout",
-      "time": "Today, 03:00pm"
+      "title": "fullbody_workout",
+      "time": "today_03_00pm"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Upperbody Workout",
-      "time": "June 05, 02:00pm"
+      "title": "upperbody_workout",
+      "time": "june_05_02_00pm"
     },
   ];
 
   List youArr = [
-    {"image": "assets/icons/barbell.png", "title": "Barbell"},
-    {"image": "assets/icons/skipping_rope.png", "title": "Skipping Rope"},
-    {"image": "assets/icons/bottle.png", "title": "Bottle 1 Liters"},
+    {"image": "assets/icons/barbell.png", "title": "barbell"},
+    {"image": "assets/icons/skipping_rope.png", "title": "skipping_rope"},
+    {"image": "assets/icons/bottle.png", "title": "bottle_1_liters"},
   ];
 
   List exercisesArr = [
@@ -222,7 +223,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       ),
                       IconTitleNextRow(
                           icon: "assets/icons/time_icon.png",
-                          title: "Schedule Workout",
+                          title: "schedule_workout".intl(context),
                           time: "5/27, 09:00 AM",
                           color: AppColors.primaryColor2.withOpacity(0.3),
                           onPressed: () {
@@ -233,8 +234,8 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       ),
                       IconTitleNextRow(
                           icon: "assets/icons/difficulity_icon.png",
-                          title: "Difficulity",
-                          time: "Beginner",
+                          title: "difficulty".intl(context),
+                          time: "beginner".intl(context),
                           color: AppColors.secondaryColor2.withOpacity(0.3),
                           onPressed: () {}),
                       SizedBox(
@@ -244,7 +245,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "You'll Need",
+                            "youll_need".intl(context),
                             style: TextStyle(
                                 color: AppColors.blackColor,
                                 fontSize: 16,
@@ -253,7 +254,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              "${youArr.length} Items",
+                              "${youArr.length} ${"items".intl(context)}",
                               style:
                               TextStyle(color: AppColors.grayColor, fontSize: 12),
                             ),
@@ -310,7 +311,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Exercises",
+                            "exercises".intl(context),
                             style: TextStyle(
                                 color: AppColors.blackColor,
                                 fontSize: 16,
@@ -319,7 +320,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              "${youArr.length} Sets",
+                              "${youArr.length} ${"sets".intl(context)}",
                               style:
                               TextStyle(color: AppColors.grayColor, fontSize: 12),
                             ),
@@ -356,7 +357,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      RoundGradientButton(title: "Start Workout", onPressed: () {})
+                      RoundGradientButton(title: "start_workout".intl(context), onPressed: () {})
                     ],
                   ),
                 )

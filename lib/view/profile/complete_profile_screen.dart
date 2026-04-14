@@ -6,6 +6,7 @@ import 'package:fitnessapp/view/your_goal/your_goal_screen.dart';
 
 import '../../common_widgets/round_gradient_button.dart';
 import '../../common_widgets/round_textfield.dart';
+import '../../i18n/intl_extension.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   static String routeName = "/CompleteProfileScreen";
@@ -59,7 +60,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       print('Error saving profile: $e');
       // 显示错误消息
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('保存失败，请检查网络连接')),
+        SnackBar(content: Text('save_failed'.intl(context))),
       );
     } finally {
       setState(() {
@@ -100,7 +101,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   height: 15,
                 ),
                 Text(
-                  "Let's complete your profile",
+                  "complete_profile".intl(context),
                   style: TextStyle(
                       color: AppColors.blackColor,
                       fontSize: 20,
@@ -109,7 +110,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  "It will help us to know more about you!",
+                  "help_us_know_you".intl(context),
                   style: TextStyle(
                     color: AppColors.grayColor,
                     fontSize: 12,
@@ -142,7 +143,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           items: ["male", "female"].map((name) => DropdownMenuItem<String>(
                             value: name,
                             child: Text(
-                              name == "male" ? "Male" : "Female", style: const TextStyle(color: AppColors.grayColor, fontSize: 14),
+                              name == "male" ? "male".intl(context) : "female".intl(context), style: const TextStyle(color: AppColors.grayColor, fontSize: 14),
                             ),
                           )).toList(),
                           onChanged: (value) {
@@ -151,7 +152,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             });
                           },
                           isExpanded: true,
-                          hint: Text("Choose Gender", style: const TextStyle(color: AppColors.grayColor, fontSize: 12)),
+                          hint: Text("choose_gender".intl(context), style: const TextStyle(color: AppColors.grayColor, fontSize: 12)),
                         ),
                       )),
                       SizedBox(width: 8,)
@@ -183,7 +184,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           child: Text(
                             selectedDate != null 
                               ? DateFormat('yyyy-MM-dd').format(selectedDate!)
-                              : "Date of Birth",
+                              : "date_of_birth".intl(context),
                             style: TextStyle(
                               color: selectedDate != null ? AppColors.blackColor : AppColors.grayColor,
                               fontSize: 14,
@@ -197,21 +198,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
                 SizedBox(height: 15),
                 RoundTextField(
-                  hintText: "Your Weight (kg)",
+                  hintText: "your_weight".intl(context),
                   icon: "assets/icons/weight_icon.png",
                   textInputType: TextInputType.number,
                   textEditingController: weightController,
                 ),
                 SizedBox(height: 15),
                 RoundTextField(
-                  hintText: "Your Height (cm)",
+                  hintText: "your_height".intl(context),
                   icon: "assets/icons/swap_icon.png",
                   textInputType: TextInputType.number,
                   textEditingController: heightController,
                 ),
                 SizedBox(height: 15),
                 RoundGradientButton(
-                  title: isLoading ? "Saving..." : "Next >",
+                  title: isLoading ? "saving".intl(context) : "next".intl(context),
                   onPressed: isLoading ? null : () {
                     _saveProfile();
                   },

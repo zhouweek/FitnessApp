@@ -1,6 +1,7 @@
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+import '../../../i18n/intl_extension.dart';
 
 class WorkoutRow extends StatelessWidget {
   final Map wObj;
@@ -34,14 +35,14 @@ class WorkoutRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      wObj["name"].toString(),
+                      wObj["name"].toString().intl(context),
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 12),
                     ),
 
                     Text(
-                      "${ wObj["kcal"].toString() } Calories Burn | ${wObj["time"].toString()}minutes",
+                      "${ wObj["kcal"].toString() } ${"calories_burn".intl(context)} | ${wObj["time"].toString()}${ "minutes".intl(context) }",
                       style: TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 10,),

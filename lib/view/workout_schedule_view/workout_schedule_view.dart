@@ -1,5 +1,6 @@
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -22,39 +23,39 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
 
   List eventArr = [
     {
-      "name": "Ab Workout",
+      "name": "ab_workout",
       "start_time": "22/06/2023 07:30 AM",
     },
     {
-      "name": "Upperbody Workout",
+      "name": "upperbody_workout",
       "start_time": "07/06/2023 09:00 AM",
     },
     {
-      "name": "Lowerbody Workout",
+      "name": "lowerbody_workout",
       "start_time": "07/06/2023 03:00 PM",
     },
     {
-      "name": "Ab Workout",
+      "name": "ab_workout",
       "start_time": "08/06/2023 10:30 AM",
     },
     {
-      "name": "Upperbody Workout",
+      "name": "upperbody_workout",
       "start_time": "08/06/2023 09:00 AM",
     },
     {
-      "name": "Lowerbody Workout",
+      "name": "lowerbody_workout",
       "start_time": "08/06/2023 03:00 PM",
     },
     {
-      "name": "Ab Workout",
+      "name": "ab_workout",
       "start_time": "09/06/2023 07:30 AM",
     },
     {
-      "name": "Upperbody Workout",
+      "name": "upperbody_workout",
       "start_time": "09/06/2023 09:00 AM",
     },
     {
-      "name": "Lowerbody Workout",
+      "name": "lowerbody_workout",
       "start_time": "09/06/2023 03:00 PM",
     }
   ];
@@ -118,7 +119,7 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
           ),
         ),
         title: Text(
-          "Workout Schedule",
+          "workout_schedule".intl(context),
           style: TextStyle(
               color: AppColors.blackColor, fontSize: 16, fontWeight: FontWeight.w700),
         ),
@@ -294,14 +295,14 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              "Workout Schedule",
-                                                              style: TextStyle(
-                                                                  color: AppColors.blackColor,
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
-                                                            ),
+                                                          "workout_schedule".intl(context),
+                                                          style: TextStyle(
+                                                              color: AppColors.blackColor,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w700),
+                                                        ),
                                                             InkWell(
                                                               onTap: () {},
                                                               child: Container(
@@ -333,7 +334,7 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                           height: 15,
                                                         ),
                                                         Text(
-                                                          sObj["name"].toString(),
+                                                          sObj["name"].toString().intl(context),
                                                           style: TextStyle(
                                                               color: AppColors.blackColor,
                                                               fontSize: 14,
@@ -365,7 +366,7 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                                         ),
 
                                                         RoundGradientButton(
-                                                            title: "Mark Done",
+                                                            title: "mark_done".intl(context),
                                                             onPressed: () {
                                                               Navigator.pop(
                                                                   context);

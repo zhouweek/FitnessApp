@@ -10,6 +10,7 @@ import 'package:fitnessapp/view/profile/widgets/title_subtitle_cell.dart';
 import 'package:flutter/material.dart';
 
 import '../../common_widgets/round_button.dart';
+import '../../i18n/intl_extension.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({Key? key}) : super(key: key);
@@ -69,25 +70,25 @@ class _UserProfileState extends State<UserProfile> {
   }
 
   List accountArr = [
-    {"image": "assets/icons/p_personal.png", "name": "Personal Data", "tag": "1"},
-    {"image": "assets/icons/p_achi.png", "name": "Achievement", "tag": "2"},
+    {"image": "assets/icons/p_personal.png", "name": "personal_data", "tag": "1"},
+    {"image": "assets/icons/p_achi.png", "name": "achievement", "tag": "2"},
     {
       "image": "assets/icons/p_activity.png",
-      "name": "Activity History",
+      "name": "activity_history",
       "tag": "3"
     },
     {
       "image": "assets/icons/p_workout.png",
-      "name": "Workout Progress",
+      "name": "workout_progress",
       "tag": "4"
     }
   ];
 
   List otherArr = [
-    {"image": "assets/icons/p_contact.png", "name": "Contact Us", "tag": "5"},
-    {"image": "assets/icons/p_privacy.png", "name": "Privacy Policy", "tag": "6"},
-    {"image": "assets/icons/p_setting.png", "name": "Setting", "tag": "7"},
-    {"image": "assets/icons/lock_icon.png", "name": "Logout", "tag": "8"},
+    {"image": "assets/icons/p_contact.png", "name": "contact_us", "tag": "5"},
+    {"image": "assets/icons/p_privacy.png", "name": "privacy_policy", "tag": "6"},
+    {"image": "assets/icons/p_setting.png", "name": "setting", "tag": "7"},
+    {"image": "assets/icons/lock_icon.png", "name": "logout", "tag": "8"},
   ];
 
   @override
@@ -99,8 +100,8 @@ class _UserProfileState extends State<UserProfile> {
         centerTitle: true,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text(
-          "Profile",
+        title: Text(
+          "profile".intl(context),
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 16,
@@ -152,7 +153,7 @@ class _UserProfileState extends State<UserProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          userData?['name'] ?? userData?['phone'] ?? "User",
+                          userData?['name'] ?? userData?['phone'] ?? "user".intl(context),
                           style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 14,
@@ -173,7 +174,7 @@ class _UserProfileState extends State<UserProfile> {
                     width: 70,
                     height: 25,
                     child: RoundButton(
-                      title: ApiService().token == null ? "Login" : "Edit",
+                      title: ApiService().token == null ? "login".intl(context) : "edit".intl(context),
                       type: RoundButtonType.primaryBG,
                       onPressed: () async {
                         // 检查用户是否已经登录
@@ -210,7 +211,7 @@ class _UserProfileState extends State<UserProfile> {
                   Expanded(
                     child: TitleSubtitleCell(
                       title: userData?['height'] != null ? "${userData?['height']}cm" : "--cm",
-                      subtitle: "Height",
+                      subtitle: "height".intl(context),
                     ),
                   ),
                   const SizedBox(
@@ -219,7 +220,7 @@ class _UserProfileState extends State<UserProfile> {
                   Expanded(
                     child: TitleSubtitleCell(
                       title: userData?['weight'] != null ? "${userData?['weight']}kg" : "--kg",
-                      subtitle: "Weight",
+                      subtitle: "weight".intl(context),
                     ),
                   ),
                   const SizedBox(
@@ -238,7 +239,7 @@ class _UserProfileState extends State<UserProfile> {
                         //  fallback到age字段
                         return userData?['age'] != null ? "${userData?['age']} years" : "-- years";
                       }(),
-                      subtitle: "Age",
+                      subtitle: "age".intl(context),
                     ),
                   ),
                 ],
@@ -259,7 +260,7 @@ class _UserProfileState extends State<UserProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Account",
+                      "account".intl(context),
                       style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -277,11 +278,11 @@ class _UserProfileState extends State<UserProfile> {
                         var iObj = accountArr[index] as Map? ?? {};
                         return SettingRow(
                           icon: iObj["image"].toString(),
-                          title: iObj["name"].toString(),
+                          title: iObj["name"].toString().intl(context),
                           onPressed: () {
-                            if (iObj["name"].toString() == "Activity History") {
+                            if (iObj["name"].toString() == "activity_history") {
                               Navigator.pushNamed(context, ActivityHistoryScreen.routeName);
-                            } else if (iObj["name"].toString() == "Workout Progress") {
+                            } else if (iObj["name"].toString() == "workout_progress") {
                               Navigator.pushNamed(context, WorkoutProgressScreen.routeName);
                             }
                           },
@@ -307,7 +308,7 @@ class _UserProfileState extends State<UserProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Notification",
+                      "notification".intl(context),
                       style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -414,7 +415,7 @@ class _UserProfileState extends State<UserProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Other",
+                      "other".intl(context),
                       style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -437,24 +438,24 @@ class _UserProfileState extends State<UserProfile> {
                         var iObj = otherArr[index] as Map? ?? {};
                         return SettingRow(
                           icon: iObj["image"].toString(),
-                          title: iObj["name"].toString(),
+                          title: iObj["name"].toString().intl(context),
                           onPressed: () {
-                            if (iObj["name"].toString() == "Logout") {
+                            if (iObj["name"].toString() == "logout") {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: const Text("Logout"),
-                                    content: const Text("Are you sure you want to logout?"),
+                                    title: Text("logout".intl(context)),
+                                    content: Text("are_you_sure_logout".intl(context)),
                                     actions: [
                                       TextButton(
-                                        child: const Text("Cancel"),
+                                        child: Text("cancel".intl(context)),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
                                       ),
                                       TextButton(
-                                        child: const Text("Logout"),
+                                        child: Text("logout".intl(context)),
                                         onPressed: () async {
                                           // 清除token
                                           await ApiService().clearToken();

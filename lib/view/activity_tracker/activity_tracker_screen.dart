@@ -3,6 +3,7 @@ import 'package:fitnessapp/view/activity_tracker/widgets/latest_activity_row.dar
 import 'package:fitnessapp/view/activity_tracker/widgets/today_target_cell.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import '../../i18n/intl_extension.dart';
 
 class ActivityTrackerScreen extends StatefulWidget {
   static String routeName = "/ActivityTrackerScreen";
@@ -19,13 +20,13 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
   List latestArr = [
     {
       "image": "assets/images/pic_4.png",
-      "title": "Drinking 300ml Water",
-      "time": "About 1 minutes ago"
+      "title": "drinking_water",
+      "time": "about_1_minute_ago"
     },
     {
       "image": "assets/images/pic_5.png",
-      "title": "Eat Snack (Fitbar)",
-      "time": "About 3 hours ago"
+      "title": "eating_snack",
+      "time": "about_3_hours_ago"
     },
   ];
 
@@ -58,8 +59,8 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
             ),
           ),
         ),
-        title: const Text(
-          "Activity Tracker",
+        title: Text(
+          "activity_tracker".intl(context),
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 16,
@@ -106,8 +107,8 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Today Target",
+                        Text(
+                          "today_target".intl(context),
                           style: TextStyle(
                               color: AppColors.blackColor,
                               fontSize: 14,
@@ -151,7 +152,7 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                           child: TodayTargetCell(
                             icon: "assets/icons/water_icon.png",
                             value: "8L",
-                            title: "Water Intake",
+                            title: "water_intake",
                           ),
                         ),
                         SizedBox(
@@ -161,7 +162,7 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                           child: TodayTargetCell(
                             icon: "assets/icons/foot_icon.png",
                             value: "2400",
-                            title: "Foot Steps",
+                            title: "foot_steps",
                           ),
                         ),
                       ],
@@ -175,8 +176,8 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Activity Progress",
+                  Text(
+                    "activity_progress".intl(context),
                     style: TextStyle(
                       color: AppColors.blackColor,
                       fontSize: 16,
@@ -191,11 +192,11 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                         borderRadius: BorderRadius.circular(15)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        items: ["Weekly", "Monthly"]
+                        items: ["weekly", "monthly"]
                             .map((name) => DropdownMenuItem(
                             value: name,
                             child: Text(
-                              name,
+                              name.intl(context),
                               style: const TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 14),
@@ -204,7 +205,7 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                         onChanged: (value) {},
                         icon: const Icon(Icons.expand_more,
                             color: AppColors.whiteColor),
-                        hint: const Text("Weekly",
+                        hint: Text("weekly".intl(context),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: AppColors.whiteColor, fontSize: 12)),
@@ -329,8 +330,8 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Latest Workout",
+                  Text(
+                    "latest_workout".intl(context),
                     style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -338,8 +339,8 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      "See More",
+                    child: Text(
+                      "see_more".intl(context),
                       style: TextStyle(
                           color: AppColors.grayColor,
                           fontSize: 14,

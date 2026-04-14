@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../common_widgets/round_gradient_button.dart';
 import '../../common_widgets/round_textfield.dart';
 import '../profile/complete_profile_screen.dart';
+import '../../i18n/intl_extension.dart';
 
 class SignupScreen extends StatefulWidget {
   static String routeName = "/SignupScreen";
@@ -96,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 15,
                 ),
                 Text(
-                  "Hey there,",
+                  "hey_there".intl(context),
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -104,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  "Create an Account",
+                  "create_account".intl(context),
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 20,
@@ -116,7 +117,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 15,
                 ),
                 RoundTextField(
-                    hintText: "Phone",
+                    hintText: "phone".intl(context),
                     icon: "assets/icons/message_icon.png",
                     textInputType: TextInputType.phone,
                     textEditingController: phoneController),
@@ -124,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 15,
                 ),
                 RoundTextField(
-                  hintText: "Password",
+                  hintText: "password".intl(context),
                   icon: "assets/icons/lock_icon.png",
                   textInputType: TextInputType.text,
                   isObscureText: !isPasswordVisible,
@@ -151,7 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 15,
                 ),
                 RoundTextField(
-                  hintText: "Confirm Password",
+                  hintText: "confirm_password".intl(context),
                   icon: "assets/icons/lock_icon.png",
                   textInputType: TextInputType.text,
                   isObscureText: !isConfirmPasswordVisible,
@@ -195,7 +196,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     Expanded(
                       child: Text(
-                          "By continuing you accept our Privacy Policy and\nTerm of Use",
+                          "accept_terms".intl(context),
                           style: TextStyle(
                             color: AppColors.grayColor,
                             fontSize: 10,
@@ -218,7 +219,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 RoundGradientButton(
-                  title: isLoading ? "Registering..." : "Register",
+                  title: isLoading ? "registering".intl(context) : "register".intl(context),
                   onPressed: isLoading ? null : () { _register(); },
                 ),
 
@@ -234,11 +235,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
                           children: [
-                            const TextSpan(
-                              text: "Already have an account? ",
+                            TextSpan(
+                              text: "already_have_account".intl(context),
                             ),
                             TextSpan(
-                                text: "Login",
+                                text: "login".intl(context),
                                 style: TextStyle(
                                     color: AppColors.secondaryColor1,
                                     fontSize: 14,

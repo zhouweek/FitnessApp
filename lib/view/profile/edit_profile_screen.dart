@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../common_widgets/round_gradient_button.dart';
 import '../../common_widgets/round_textfield.dart';
+import '../../i18n/intl_extension.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static String routeName = "/EditProfileScreen";
@@ -103,7 +104,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       print('Error saving profile: $e');
       // 显示错误消息
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('保存失败，请检查网络连接')),
+        SnackBar(content: Text('save_failed'.intl(context))),
       );
     } finally {
       setState(() {
@@ -129,8 +130,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         backgroundColor: AppColors.whiteColor,
         centerTitle: true,
         elevation: 0,
-        title: const Text(
-          "Edit Profile",
+        title: Text(
+          "edit_profile".intl(context),
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 16,
@@ -151,21 +152,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             children: [
               SizedBox(height: media.width * 0.05),
               RoundTextField(
-                hintText: "Name",
+                hintText: "name".intl(context),
                 icon: "assets/icons/user_icon.png",
                 textInputType: TextInputType.text,
                 textEditingController: nameController,
               ),
               SizedBox(height: media.width * 0.05),
               RoundTextField(
-                hintText: "Height (cm)",
+                hintText: "height".intl(context),
                 icon: "assets/icons/foot_icon.png",
                 textInputType: TextInputType.number,
                 textEditingController: heightController,
               ),
               SizedBox(height: media.width * 0.05),
               RoundTextField(
-                hintText: "Weight (kg)",
+                hintText: "weight".intl(context),
                 icon: "assets/icons/weight_icon.png",
                 textInputType: TextInputType.number,
                 textEditingController: weightController,
@@ -206,7 +207,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           child: Text(
                             birthDate != null
                                 ? DateFormat('yyyy-MM-dd').format(birthDate!)
-                                : "Date of Birth",
+                                : "date_of_birth".intl(context),
                             style: TextStyle(
                               color: birthDate != null ? AppColors.blackColor : AppColors.grayColor,
                               fontSize: 14,
@@ -241,8 +242,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Expanded(
                       child: DropdownButton<String>(
                         value: selectedGender,
-                        hint: const Text(
-                          "Gender",
+                        hint: Text(
+                          "gender".intl(context),
                           style: TextStyle(
                             color: AppColors.grayColor,
                             fontSize: 14,
@@ -257,7 +258,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(
-                              value == "male" ? "Male" : value == "female" ? "Female" : "Other",
+                              value == "male" ? "male".intl(context) : value == "female" ? "female".intl(context) : "other".intl(context),
                               style: const TextStyle(
                                 color: AppColors.blackColor,
                                 fontSize: 14,
@@ -274,7 +275,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
               SizedBox(height: media.width * 0.1),
               RoundGradientButton(
-                title: isLoading ? "Saving..." : "Save",
+                title: isLoading ? "saving".intl(context) : "save".intl(context),
                 onPressed: isLoading ? null : () {
                   _saveProfile();
                 },

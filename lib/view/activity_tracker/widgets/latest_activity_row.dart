@@ -1,5 +1,6 @@
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import '../../../i18n/intl_extension.dart';
 
 class LatestActivityRow extends StatelessWidget {
   final Map wObj;
@@ -28,14 +29,14 @@ class LatestActivityRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      wObj["title"].toString(),
+                      wObj["title"].toString().intl(context),
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 12, fontWeight: FontWeight.w500),
                     ),
 
                     Text(
-                      wObj["time"].toString(),
+                      wObj["time"].toString().intl(context),
                       style: TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 10,),

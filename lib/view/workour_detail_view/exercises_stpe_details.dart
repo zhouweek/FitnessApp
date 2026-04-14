@@ -1,4 +1,5 @@
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/step_detail_row.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,27 +18,23 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
   List stepArr = [
     {
       "no": "01",
-      "title": "Spread Your Arms",
-      "detail":
-      "To make the gestures feel more relaxed, stretch your arms as you start this movement. No bending of hands."
+      "title": "spread_your_arms",
+      "detail": "spread_your_arms_detail"
     },
     {
       "no": "02",
-      "title": "Rest at The Toe",
-      "detail":
-      "The basis of this movement is jumping. Now, what needs to be considered is that you have to use the tips of your feet"
+      "title": "rest_at_the_toe",
+      "detail": "rest_at_the_toe_detail"
     },
     {
       "no": "03",
-      "title": "Adjust Foot Movement",
-      "detail":
-      "Jumping Jack is not just an ordinary jump. But, you also have to pay close attention to leg movements."
+      "title": "adjust_foot_movement",
+      "detail": "adjust_foot_movement_detail"
     },
     {
       "no": "04",
-      "title": "Clapping Both Hands",
-      "detail":
-      "This cannot be taken lightly. You see, without realizing it, the clapping of your hands helps you to keep your rhythm while doing the Jumping Jack"
+      "title": "clapping_both_hands",
+      "detail": "clapping_both_hands_detail"
     },
   ];
 

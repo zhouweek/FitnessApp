@@ -1,4 +1,5 @@
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _AddScheduleViewState extends State<AddScheduleView> {
           ),
         ),
         title: Text(
-          "Add Schedule",
+          "add_schedule".intl(context),
           style: TextStyle(
               color: AppColors.blackColor, fontSize: 16, fontWeight: FontWeight.w700),
         ),
@@ -95,7 +96,7 @@ class _AddScheduleViewState extends State<AddScheduleView> {
             height: 20,
           ),
           Text(
-            "Time",
+            "time".intl(context),
             style: TextStyle(
                 color: AppColors.blackColor, fontSize: 14, fontWeight: FontWeight.w500),
           ),
@@ -113,7 +114,7 @@ class _AddScheduleViewState extends State<AddScheduleView> {
             height: 20,
           ),
           Text(
-            "Details Workout",
+            "details_workout".intl(context),
             style: TextStyle(
                 color: AppColors.blackColor, fontSize: 14, fontWeight: FontWeight.w500),
           ),
@@ -122,8 +123,8 @@ class _AddScheduleViewState extends State<AddScheduleView> {
           ),
           IconTitleNextRow(
               icon: "assets/icons/choose_workout.png",
-              title: "Choose Workout",
-              time: "Upperbody",
+              title: "choose_workout".intl(context),
+              time: "upperbody".intl(context),
               color: AppColors.lightGrayColor,
               onPressed: () {}),
           const SizedBox(
@@ -131,8 +132,8 @@ class _AddScheduleViewState extends State<AddScheduleView> {
           ),
           IconTitleNextRow(
               icon: "assets/icons/difficulity_icon.png",
-              title: "Difficulity",
-              time: "Beginner",
+              title: "difficulty".intl(context),
+              time: "beginner".intl(context),
               color: AppColors.lightGrayColor,
               onPressed: () {}),
           const SizedBox(
@@ -140,7 +141,7 @@ class _AddScheduleViewState extends State<AddScheduleView> {
           ),
           IconTitleNextRow(
               icon: "assets/icons/repetitions.png",
-              title: "Custom Repetitions",
+              title: "custom_repetitions".intl(context),
               time: "",
               color: AppColors.lightGrayColor,
               onPressed: () {}),
@@ -149,12 +150,12 @@ class _AddScheduleViewState extends State<AddScheduleView> {
           ),
           IconTitleNextRow(
               icon: "assets/icons/repetitions.png",
-              title: "Custom Weights",
+              title: "custom_weights".intl(context),
               time: "",
               color: AppColors.lightGrayColor,
               onPressed: () {}),
           Spacer(),
-          RoundGradientButton(title: "Save", onPressed: () {}),
+          RoundGradientButton(title: "save".intl(context), onPressed: () {}),
           const SizedBox(
             height: 20,
           ),
