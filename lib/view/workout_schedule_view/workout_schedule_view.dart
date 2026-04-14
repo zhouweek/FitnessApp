@@ -92,6 +92,7 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    final locale = Localizations.localeOf(context);
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
@@ -173,22 +174,18 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
             dayBGColor: Colors.grey.withOpacity(0.15),
             titleSpaceBetween: 15,
             backgroundColor: Colors.transparent,
-            // fullCalendar: false,
             fullCalendarScroll: FullCalendarScroll.horizontal,
             fullCalendarDay: WeekDay.short,
             selectedDateColor: Colors.white,
             dateColor: Colors.black,
-            locale: 'en',
-
+            locale: locale.languageCode,
             initialDate: DateTime.now(),
             calendarEventColor: AppColors.primaryColor2,
             firstDate: DateTime.now().subtract(const Duration(days: 140)),
             lastDate: DateTime.now().add(const Duration(days: 60)),
-
             onDateSelected: (date) {
               _selectedDateAppBBar = date;
               setDayEventWorkoutList();
-
             },
             selectedDayLogo: Container(
               width: double.maxFinite,
@@ -238,7 +235,6 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                     alignment: Alignment.centerLeft,
                                     children: slotArr.map((sObj) {
                                       var min = (sObj["date"] as DateTime).minute;
-                                      //(0 to 2)
                                       var pos = (min / 60) * 2 - 1;
 
                                       return Align(
@@ -392,7 +388,7 @@ class _WorkoutScheduleViewState extends State<WorkoutScheduleView> {
                                               BorderRadius.circular(17.5),
                                             ),
                                             child: Text(
-                                              "${sObj["name"].toString()}, ${getStringDateToOtherFormate(sObj["start_time"].toString(), outFormatStr: "h:mm aa")}",
+                                              "${sObj["name"].toString().intl(context)}, ${getStringDateToOtherFormate(sObj["start_time"].toString(), outFormatStr: "h:mm aa")}",
                                               maxLines: 1,
                                               style: TextStyle(
                                                 color: AppColors.whiteColor,

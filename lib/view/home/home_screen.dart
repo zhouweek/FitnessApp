@@ -3,6 +3,7 @@ import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/activity_tracker/activity_tracker_screen.dart';
 import 'package:fitnessapp/view/finish_workout/finish_workout_screen.dart';
 import 'package:fitnessapp/view/home/widgets/workout_row.dart';
+import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
@@ -12,6 +13,7 @@ import '../../common_widgets/round_button.dart';
 import '../../common_widgets/round_gradient_button.dart';
 import '../notification/notification_screen.dart';
 import '../../i18n/intl_extension.dart';
+import '../../utils/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "/HomeScreen";
@@ -25,6 +27,27 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   List<int> showingTooltipOnSpots = [21];
+  bool isLoggedIn = false;
+  String? username;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    setState(() {
+      isLoggedIn = ApiService().isLoggedIn;
+      username = ApiService().username;
+    });
+  }
+
+  Future<void> _navigateToLogin() async {
+    await Navigator.pushNamed(context, LoginScreen.routeName);
+    // 从登录页面回来后，刷新登录状态
+    await _checkLoginStatus();
+  }
 
   List<FlSpot> get allSpots => const [
         FlSpot(0, 20),
@@ -180,26 +203,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "welcome_back".intl(context),
-                          style: TextStyle(
-                            color: AppColors.midGrayColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Text(
-                          "stefani_wong".intl(context),
-                          style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 20,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
-                      ],
+                    Expanded(
+                      child: isLoggedIn
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "welcome_back".intl(context),
+                                  style: TextStyle(
+                                    color: AppColors.midGrayColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  username ?? "stefani_wong".intl(context),
+                                  style: TextStyle(
+                                    color: AppColors.blackColor,
+                                    fontSize: 20,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                )
+                              ],
+                            )
+                          : RoundGradientButton(
+                              title: "login".intl(context),
+                              onPressed: _navigateToLogin,
+                            ),
                     ),
                     IconButton(
                         onPressed: () {

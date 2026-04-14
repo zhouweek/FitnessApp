@@ -9,10 +9,12 @@ class ApiService {
   ApiService._internal();
 
   String? token;
+  String? username;
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     token = prefs.getString('access_token');
+    username = prefs.getString('username');
   }
 
   Future<void> saveToken(String accessToken, String refreshToken) async {
@@ -22,12 +24,28 @@ class ApiService {
     token = accessToken;
   }
 
+  Future<void> saveUserInfo(Map<String, dynamic> userInfo) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (userInfo.containsKey('username')) {
+      username = userInfo['username'].toString();
+      await prefs.setString('username', username!);
+    }
+    if (userInfo.containsKey('phone')) {
+      await prefs.setString('phone', userInfo['phone'].toString());
+    }
+  }
+
   Future<void> clearToken() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('access_token');
     await prefs.remove('refresh_token');
+    await prefs.remove('username');
+    await prefs.remove('phone');
     token = null;
+    username = null;
   }
+
+  bool get isLoggedIn => token != null;
 
   Map<String, String> _getHeaders({bool withAuth = true}) {
     final headers = {

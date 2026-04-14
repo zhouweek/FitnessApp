@@ -52,6 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
           response['data']['access_token'],
           response['data']['refresh_token'],
         );
+        // 保存用户信息
+        if (response['data'].containsKey('user') && response['data']['user'] is Map<String, dynamic>) {
+          await ApiService().saveUserInfo(response['data']['user']);
+        }
         // 登录成功，跳转到主页面
         Navigator.pushNamed(context, DashboardScreen.routeName);
       } else {

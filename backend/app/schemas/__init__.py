@@ -1,6 +1,6 @@
 from app.schemas.user import (
     UserBase, UserCreate, UserUpdate, UserResponse,
-    Token, TokenData, LoginRequest
+    Token, TokenData, LoginRequest, LoginResponse
 )
 from app.schemas.fitness_goal import FitnessGoalBase, FitnessGoalResponse
 from app.schemas.daily_target import (
@@ -20,7 +20,7 @@ from app.schemas.common import ResponseModel, ListResponseModel
 
 __all__ = [
     "UserBase", "UserCreate", "UserUpdate", "UserResponse",
-    "Token", "TokenData", "LoginRequest",
+    "Token", "TokenData", "LoginRequest", "LoginResponse",
     "FitnessGoalBase", "FitnessGoalResponse",
     "DailyTargetBase", "DailyTargetCreate", "DailyTargetUpdate", "DailyTargetResponse",
     "WorkoutCategoryBase", "WorkoutCategoryResponse",

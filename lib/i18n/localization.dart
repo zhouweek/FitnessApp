@@ -15,7 +15,11 @@ class Localization {
   late Map<String, String> _localizedStrings;
 
   Future<void> load() async {
-    final jsonString = await rootBundle.loadString('assets/i18n/${locale.languageCode}.json');
+    String langCode = locale.languageCode;
+    if (!['en', 'zh'].contains(langCode)) {
+      langCode = 'zh'; // 默认使用中文
+    }
+    final jsonString = await rootBundle.loadString('assets/i18n/$langCode.json');
     final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
     _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
   }

@@ -45,10 +45,16 @@ class _UserProfileState extends State<UserProfile> {
   @override
   void initState() {
     super.initState();
-    _fetchUserProfile();
+    if (ApiService().token != null) {
+      _fetchUserProfile();
+    }
   }
 
   Future<void> _fetchUserProfile() async {
+    if (ApiService().token == null) {
+      return;
+    }
+    
     setState(() {
       isLoading = true;
     });

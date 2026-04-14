@@ -3,6 +3,7 @@ import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../common_widgets/round_button.dart';
 import '../../utils/common.dart';
@@ -20,6 +21,8 @@ class _AddScheduleViewState extends State<AddScheduleView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    final locale = Localizations.localeOf(context);
+    final isChinese = locale.languageCode == 'zh';
 
     return Scaffold(
       appBar: AppBar(
@@ -87,7 +90,9 @@ class _AddScheduleViewState extends State<AddScheduleView> {
                 width: 8,
               ),
               Text(
-                dateToString(widget.date, formatStr: "E, dd MMMM yyyy"),
+                isChinese 
+                    ? DateFormat("yyyy年MM月dd日 EEEE", "zh_CN").format(widget.date)
+                    : DateFormat("EEEE, MMMM dd, yyyy", "en_US").format(widget.date),
                 style: TextStyle(color: AppColors.grayColor, fontSize: 14),
               ),
             ],

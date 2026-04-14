@@ -71,70 +71,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     offset: Offset(0, -2))
               ]),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TabButton(
-                      icon: "assets/icons/home_icon.png",
-                      selectIcon: "assets/icons/home_select_icon.png",
-                      isActive: selectTab == 0,
-                      onTap: () {
-                        if (mounted) {
-                          setState(() {
-                            selectTab = 0;
-                          });
-                        }
-                      },
-                    ),
-                    const SizedBox(width: 40),
-                    TabButton(
-                      icon: "assets/icons/activity_icon.png",
-                      selectIcon: "assets/icons/activity_select_icon.png",
-                      isActive: selectTab == 1,
-                      onTap: () {
-                        if (mounted) {
-                          setState(() {
-                            selectTab = 1;
-                          });
-                        }
-                      },
-                    ),
-                  ],
+                child: TabButton(
+                  icon: "assets/icons/home_icon.png",
+                  selectIcon: "assets/icons/home_select_icon.png",
+                  isActive: selectTab == 0,
+                  onTap: () {
+                    if (mounted) {
+                      setState(() {
+                        selectTab = 0;
+                      });
+                    }
+                  },
                 ),
               ),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TabButton(
-                      icon: "assets/icons/camera_icon.png",
-                      selectIcon: "assets/icons/camera_select_icon.png",
-                      isActive: selectTab == 2,
-                      onTap: () {
-                        if (mounted) {
-                          setState(() {
-                            selectTab = 2;
-                          });
-                        }
-                      },
-                    ),
-                    const SizedBox(width: 40),
-                    TabButton(
-                      icon: "assets/icons/user_icon.png",
-                      selectIcon: "assets/icons/user_select_icon.png",
-                      isActive: selectTab == 3,
-                      onTap: () {
-                        if (mounted) {
-                          setState(() {
-                            selectTab = 3;
-                          });
-                        }
-                      },
-                    ),
-                  ],
+                child: TabButton(
+                  icon: "assets/icons/activity_icon.png",
+                  selectIcon: "assets/icons/activity_select_icon.png",
+                  isActive: selectTab == 1,
+                  onTap: () {
+                    if (mounted) {
+                      setState(() {
+                        selectTab = 1;
+                      });
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(width: 70),
+              Expanded(
+                child: TabButton(
+                  icon: "assets/icons/camera_icon.png",
+                  selectIcon: "assets/icons/camera_select_icon.png",
+                  isActive: selectTab == 2,
+                  onTap: () {
+                    if (mounted) {
+                      setState(() {
+                        selectTab = 2;
+                      });
+                    }
+                  },
+                ),
+              ),
+              Expanded(
+                child: TabButton(
+                  icon: "assets/icons/user_icon.png",
+                  selectIcon: "assets/icons/user_select_icon.png",
+                  isActive: selectTab == 3,
+                  onTap: () {
+                    if (mounted) {
+                      setState(() {
+                        selectTab = 3;
+                      });
+                    }
+                  },
                 ),
               ),
             ],
@@ -163,27 +155,29 @@ class TabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            isActive ? selectIcon : icon,
-            width: 25,
-            height: 25,
-            fit: BoxFit.fitWidth,
-          ),
-          SizedBox(height: isActive ? 8 : 12),
-          Visibility(
-            visible: isActive,
-            child: Container(
-              width: 4,
-              height: 4,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: AppColors.secondaryG),
-                  borderRadius: BorderRadius.circular(2)),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              isActive ? selectIcon : icon,
+              width: 25,
+              height: 25,
+              fit: BoxFit.fitWidth,
             ),
-          )
-        ],
+            SizedBox(height: isActive ? 8 : 12),
+            Visibility(
+              visible: isActive,
+              child: Container(
+                width: 4,
+                height: 4,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: AppColors.secondaryG),
+                    borderRadius: BorderRadius.circular(2)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:fitnessapp/utils/app_colors.dart';
-import 'package:fitnessapp/view/dashboard/dashboard_screen.dart';
+import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../common_widgets/round_gradient_button.dart';
@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
               RoundGradientButton(
                 title: "go_to_home".intl(context),
                 onPressed: () {
-                  Navigator.pushNamed(context, DashboardScreen.routeName);
+                  Navigator.pushNamed(context, LoginScreen.routeName);
                 },
               )
             ],

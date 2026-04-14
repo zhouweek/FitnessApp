@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
         fontFamily: "Poppins"
       ),
       home: const DashboardScreen(),
-      locale: Locale('zh', ''), // 默认使用中文
       localizationsDelegates: [
         Localization.delegate,
         GlobalMaterialLocalizations.delegate,

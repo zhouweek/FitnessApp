@@ -67,6 +67,17 @@ class _SignupScreenState extends State<SignupScreen> {
       );
 
       if (response.containsKey('data')) {
+        // 如果返回了 token，保存 token 和用户信息
+        if (response['data'].containsKey('access_token') && response['data'].containsKey('refresh_token')) {
+          await ApiService().saveToken(
+            response['data']['access_token'],
+            response['data']['refresh_token'],
+          );
+          // 保存用户信息
+          if (response['data'] is Map<String, dynamic>) {
+            await ApiService().saveUserInfo(response['data']);
+          }
+        }
         // 注册成功，跳转到完善个人资料页面
         Navigator.pushNamed(context, CompleteProfileScreen.routeName);
       }

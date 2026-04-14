@@ -238,31 +238,31 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                             String weekDay;
                             switch (group.x) {
                               case 0:
-                                weekDay = 'Sunday';
+                                weekDay = 'sunday';
                                 break;
                               case 1:
-                                weekDay = 'Monday';
+                                weekDay = 'monday';
                                 break;
                               case 2:
-                                weekDay = 'Tuesday';
+                                weekDay = 'tuesday';
                                 break;
                               case 3:
-                                weekDay = 'Wednesday';
+                                weekDay = 'wednesday';
                                 break;
                               case 4:
-                                weekDay = 'Thursday';
+                                weekDay = 'thursday';
                                 break;
                               case 5:
-                                weekDay = 'Friday';
+                                weekDay = 'friday';
                                 break;
                               case 6:
-                                weekDay = 'Saturday';
+                                weekDay = 'saturday';
                                 break;
                               default:
                                 throw Error();
                             }
                             return BarTooltipItem(
-                              '$weekDay\n',
+                              '${weekDay.intl(context)}\n',
                               const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

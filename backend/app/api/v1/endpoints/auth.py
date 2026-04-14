@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import verify_password, get_password_hash, create_access_token, create_refresh_token, decode_token
 from app.models import User, UserToken
-from app.schemas import UserCreate, UserResponse, Token, LoginRequest, ResponseModel
+from app.schemas import UserCreate, UserResponse, Token, LoginRequest, ResponseModel, LoginResponse
 from datetime import datetime, timedelta
 from app.core.config import settings
 
@@ -42,7 +42,7 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
     return ResponseModel(data=UserResponse.model_validate(user))
 
 
-@router.post("/login", response_model=ResponseModel[Token])
+@router.post("/login", response_model=ResponseModel[LoginResponse])
 def login(login_data: LoginRequest, db: Session = Depends(get_db)):
     # 优先使用手机号登录，如果没有提供手机号则使用用户名
     if login_data.phone:
@@ -74,9 +74,11 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
     db.add(user_token)
     db.commit()
     
-    return ResponseModel(data=Token(
+    return ResponseModel(data=LoginResponse(
         access_token=access_token,
-        refresh_token=refresh_token
+        refresh_token=refresh_token,
+        token_type="bearer",
+        user=UserResponse.model_validate(user)
     ))
 
 
