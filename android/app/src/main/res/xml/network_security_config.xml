@@ -6,6 +6,10 @@
             <certificates src="system" />
         </trust-anchors>
     </base-config>
+    <!-- Render 生产环境域名配置 -->
+    <domain-config>
+        <domain includeSubdomains="true">fitnessapp-rxlv.onrender.com</domain>
+    </domain-config>
     <!-- 开发环境局域网IP配置，如需修改请同时修改 lib/utils/api_config.dart -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">10.82.70.93</domain>
