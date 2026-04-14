@@ -108,15 +108,15 @@ class _CameraScreenState extends State<CameraScreen> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Reminder!",
+                                Text(
+                                  "reminder".intl(context),
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500),
                                 ),
                                 Text(
-                                  "Next Photos Fall On July 08",
+                                  "next_photos_fall_on_july_08".intl(context),
                                   style: TextStyle(
                                       color: AppColors.blackColor,
                                       fontSize: 14,
@@ -161,7 +161,7 @@ class _CameraScreenState extends State<CameraScreen> {
                                 height: 15,
                               ),
                               Text(
-                                "Track Your Progress Each\nMonth With Photo",
+                                "track_your_progress_each_month_with_photo".intl(context),
                                 style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 12,
@@ -172,7 +172,7 @@ class _CameraScreenState extends State<CameraScreen> {
                                 width: 110,
                                 height: 35,
                                 child: RoundButton(
-                                    title: "Learn More",
+                                    title: "learn_more".intl(context),
                                     onPressed: () {}),
                               )
                             ]),
@@ -199,7 +199,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Compare my Photo",
+                        "compare_my_photo".intl(context),
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 14,
@@ -209,7 +209,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         width: 100,
                         height: 25,
                         child: RoundButton(
-                          title: "Compare",
+                          title: "compare".intl(context),
                           onPressed: () {
                             // Navigator.push(
                             //   context,
@@ -231,7 +231,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Gallery",
+                        "gallery".intl(context),
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,
@@ -240,7 +240,7 @@ class _CameraScreenState extends State<CameraScreen> {
                       TextButton(
                           onPressed: () {},
                           child: Text(
-                            "See more",
+                            "see_more".intl(context),
                             style: TextStyle(color: AppColors.grayColor, fontSize: 12),
                           ))
                     ],
@@ -261,7 +261,7 @@ class _CameraScreenState extends State<CameraScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              pObj["time"].toString(),
+                              pObj["time"].toString().intl(context),
                               style:
                               TextStyle(color: AppColors.grayColor, fontSize: 12),
                             ),

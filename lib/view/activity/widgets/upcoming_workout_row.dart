@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -40,14 +41,14 @@ class _UpcomingWorkoutRowState extends State<UpcomingWorkoutRow> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.wObj["title"].toString(),
+                      widget.wObj["title"].toString().intl(context),
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      widget.wObj["time"].toString(),
+                      widget.wObj["time"].toString().intl(context),
                       style: TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 10,

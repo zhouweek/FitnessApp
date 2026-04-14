@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class ExercisesRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    eObj["title"].toString(),
+                    eObj["title"].toString().intl(context),
                     style: TextStyle(color: AppColors.blackColor, fontSize: 14, fontWeight: FontWeight.w500),
                   ),
                   Text(

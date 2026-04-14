@@ -210,7 +210,7 @@ class _UserProfileState extends State<UserProfile> {
                 children: [
                   Expanded(
                     child: TitleSubtitleCell(
-                      title: userData?['height'] != null ? "${userData?['height']}cm" : "--cm",
+                      title: userData?['height'] != null ? "${userData?['height']}${"cm".intl(context)}" : "--${"cm".intl(context)}",
                       subtitle: "height".intl(context),
                     ),
                   ),
@@ -219,7 +219,7 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                   Expanded(
                     child: TitleSubtitleCell(
-                      title: userData?['weight'] != null ? "${userData?['weight']}kg" : "--kg",
+                      title: userData?['weight'] != null ? "${userData?['weight']}${"kg".intl(context)}" : "--${"kg".intl(context)}",
                       subtitle: "weight".intl(context),
                     ),
                   ),
@@ -233,11 +233,11 @@ class _UserProfileState extends State<UserProfile> {
                         if (userData?['birthday'] != null) {
                           int? age = calculateAge(userData?['birthday']);
                           if (age != null) {
-                            return "$age years";
+                            return "$age${"years".intl(context)}";
                           }
                         }
                         //  fallback到age字段
-                        return userData?['age'] != null ? "${userData?['age']} years" : "-- years";
+                        return userData?['age'] != null ? "${userData?['age']}${"years".intl(context)}" : "--${"years".intl(context)}";
                       }(),
                       subtitle: "age".intl(context),
                     ),
@@ -330,7 +330,7 @@ class _UserProfileState extends State<UserProfile> {
                             ),
                             Expanded(
                               child: Text(
-                                "Pop-up Notification",
+                                "pop_up_notification".intl(context),
                                 style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 12,

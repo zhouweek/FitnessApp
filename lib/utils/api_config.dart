@@ -1,5 +1,5 @@
 class ApiConfig {
-  static const String host = '192.168.1.116';
+  static const String host = '10.82.70.93';
   static const int port = 8000;
   static const String protocol = 'http';
   static const String apiPrefix = '/api/v1';

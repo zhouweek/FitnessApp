@@ -131,7 +131,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 height: 15,
               ),
               Text(
-                widget.eObj["title"].toString(),
+                widget.eObj["title"].toString().intl(context),
                 style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -141,7 +141,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 height: 4,
               ),
               Text(
-                "Easy | 390 Calories Burn",
+                "${"easy".intl(context)} | ${"calories_burn_390".intl(context)}",
                 style: TextStyle(
                   color: AppColors.grayColor,
                   fontSize: 12,
@@ -151,7 +151,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 height: 15,
               ),
               Text(
-                "Descriptions",
+                "descriptions".intl(context),
                 style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -161,12 +161,12 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 height: 4,
               ),
               ReadMoreText(
-                'A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide',
+                "${"jumping_jack_description".intl(context)} ${"jumping_jack_description".intl(context)}",
                 trimLines: 4,
                 colorClickableText: AppColors.blackColor,
                 trimMode: TrimMode.Line,
-                trimCollapsedText: ' Read More ...',
-                trimExpandedText: ' Read Less',
+                trimCollapsedText: " ${"read_more".intl(context)}",
+                trimExpandedText: " ${"read_less".intl(context)}",
                 style: TextStyle(
                   color: AppColors.grayColor,
                   fontSize: 12,
@@ -181,7 +181,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "How To Do It",
+                    "how_to_do_it".intl(context),
                     style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -190,7 +190,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "${stepArr.length} Sets",
+                      "${stepArr.length} ${"sets".intl(context)}",
                       style: TextStyle(color: AppColors.grayColor, fontSize: 12),
                     ),
                   )
@@ -210,7 +210,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 }),
               ),
               Text(
-                "Custom Repetitions",
+                "custom_repetitions".intl(context),
                 style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -244,7 +244,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                           fit: BoxFit.contain,
                         ),
                         Text(
-                          " ${(index + 1) * 15} Calories Burn",
+                          " ${(index + 1) * 15} ${"calories_burn".intl(context)}",
                           style: TextStyle(color: AppColors.grayColor, fontSize: 10),
                         ),
                         Text(
@@ -255,7 +255,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          " times",
+                          "times".intl(context),
                           style: TextStyle(color: AppColors.grayColor, fontSize: 16),
                         )
                       ],
@@ -263,7 +263,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   },
                 ),
               ),
-              RoundGradientButton(title: "Save", onPressed: () {}),
+              RoundGradientButton(title: "save".intl(context), onPressed: () {}),
               const SizedBox(
                 height: 15,
               ),

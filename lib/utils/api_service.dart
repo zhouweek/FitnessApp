@@ -145,7 +145,7 @@ class ApiService {
       return data;
     } else {
       throw ApiException(
-        message: data['message'] ?? '请求失败',
+        message: data['message'] ?? data['detail'] ?? '请求失败',
         code: response.statusCode,
       );
     }

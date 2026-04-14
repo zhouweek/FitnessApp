@@ -156,7 +156,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                         getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
                           return lineBarsSpot.map((lineBarSpot) {
                             return LineTooltipItem(
-                              "${lineBarSpot.x.toInt()} mins ago",
+                              "${lineBarSpot.x.toInt()}${"minutes_ago".intl(context)}",
                               const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
@@ -167,7 +167,44 @@ class _ActivityScreenState extends State<ActivityScreen> {
                         },
                       ),
                     ),
-                    lineBarsData: lineBarsData1,
+                    lineBarsData: [
+                      LineChartBarData(
+                        isCurved: true,
+                        color: AppColors.whiteColor,
+                        barWidth: 4,
+                        isStrokeCapRound: true,
+                        dotData: FlDotData(show: false),
+                        belowBarData: BarAreaData(show: false),
+                        spots: const [
+                          FlSpot(1, 35),
+                          FlSpot(2, 70),
+                          FlSpot(3, 40),
+                          FlSpot(4, 80),
+                          FlSpot(5, 25),
+                          FlSpot(6, 70),
+                          FlSpot(7, 35),
+                        ],
+                      ),
+                      LineChartBarData(
+                        isCurved: true,
+                        color: AppColors.whiteColor.withOpacity(0.5),
+                        barWidth: 2,
+                        isStrokeCapRound: true,
+                        dotData: FlDotData(show: false),
+                        belowBarData: BarAreaData(
+                          show: false,
+                        ),
+                        spots: const [
+                          FlSpot(1, 80),
+                          FlSpot(2, 50),
+                          FlSpot(3, 90),
+                          FlSpot(4, 40),
+                          FlSpot(5, 80),
+                          FlSpot(6, 35),
+                          FlSpot(7, 60),
+                        ],
+                      ),
+                    ],
                     minY: -0.5,
                     maxY: 110,
                     titlesData: FlTitlesData(
@@ -175,10 +212,87 @@ class _ActivityScreenState extends State<ActivityScreen> {
                         leftTitles: AxisTitles(),
                         topTitles: AxisTitles(),
                         bottomTitles: AxisTitles(
-                          sideTitles: bottomTitles,
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 32,
+                            interval: 1,
+                            getTitlesWidget: (value, meta) {
+                              var style = TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 12,
+                              );
+                              Widget text;
+                              switch (value.toInt()) {
+                                case 1:
+                                  text = Text("sun".intl(context), style: style);
+                                  break;
+                                case 2:
+                                  text = Text("mon".intl(context), style: style);
+                                  break;
+                                case 3:
+                                  text = Text("tue".intl(context), style: style);
+                                  break;
+                                case 4:
+                                  text = Text("wed".intl(context), style: style);
+                                  break;
+                                case 5:
+                                  text = Text("thu".intl(context), style: style);
+                                  break;
+                                case 6:
+                                  text = Text("fri".intl(context), style: style);
+                                  break;
+                                case 7:
+                                  text = Text("sat".intl(context), style: style);
+                                  break;
+                                default:
+                                  text = const Text('');
+                                  break;
+                              }
+                              return SideTitleWidget(
+                                axisSide: meta.axisSide,
+                                space: 10,
+                                child: text,
+                              );
+                            },
+                          ),
                         ),
                         rightTitles: AxisTitles(
-                          sideTitles: rightTitles,
+                          sideTitles: SideTitles(
+                            getTitlesWidget: (value, meta) {
+                              String text;
+                              switch (value.toInt()) {
+                                case 0:
+                                  text = '0%';
+                                  break;
+                                case 20:
+                                  text = '20%';
+                                  break;
+                                case 40:
+                                  text = '40%';
+                                  break;
+                                case 60:
+                                  text = '60%';
+                                  break;
+                                case 80:
+                                  text = '80%';
+                                  break;
+                                case 100:
+                                  text = '100%';
+                                  break;
+                                default:
+                                  return Container();
+                              }
+                              return Text(text,
+                                  style: TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 12,
+                                  ),
+                                  textAlign: TextAlign.center);
+                            },
+                            showTitles: true,
+                            interval: 20,
+                            reservedSize: 40,
+                          ),
                         )),
                     gridData: FlGridData(
                       show: true,
@@ -240,7 +354,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Daily Workout Schedule",
+                          "workout_schedule".intl(context),
                           style: TextStyle(
                               color: AppColors.blackColor,
                               fontSize: 14,
@@ -250,7 +364,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                           width: 70,
                           height: 25,
                           child: RoundButton(
-                            title: "Check",
+                            title: "check".intl(context),
                             onPressed: () {
                               // Navigator.push(
                               //   context,
@@ -272,7 +386,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Upcoming Workout",
+                        "latest_workout".intl(context),
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,
@@ -281,7 +395,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "See More",
+                          "see_more".intl(context),
                           style: TextStyle(
                               color: AppColors.grayColor,
                               fontSize: 14,
@@ -306,7 +420,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "What Do You Want to Train",
+                        "what_do_you_want_to_train".intl(context),
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,
@@ -338,140 +452,4 @@ class _ActivityScreenState extends State<ActivityScreen> {
     );
   }
 
-  LineTouchData get lineTouchData1 => LineTouchData(
-    handleBuiltInTouches: true,
-    touchTooltipData: LineTouchTooltipData(
-      tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-    ),
-  );
-
-  List<LineChartBarData> get lineBarsData1 => [
-    lineChartBarData1_1,
-    lineChartBarData1_2,
-  ];
-
-  LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-    isCurved: true,
-    color: AppColors.whiteColor,
-    barWidth: 4,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
-    spots: const [
-      FlSpot(1, 35),
-      FlSpot(2, 70),
-      FlSpot(3, 40),
-      FlSpot(4, 80),
-      FlSpot(5, 25),
-      FlSpot(6, 70),
-      FlSpot(7, 35),
-    ],
-  );
-
-  LineChartBarData get lineChartBarData1_2 => LineChartBarData(
-    isCurved: true,
-    color: AppColors.whiteColor.withOpacity(0.5),
-    barWidth: 2,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(
-      show: false,
-    ),
-    spots: const [
-      FlSpot(1, 80),
-      FlSpot(2, 50),
-      FlSpot(3, 90),
-      FlSpot(4, 40),
-      FlSpot(5, 80),
-      FlSpot(6, 35),
-      FlSpot(7, 60),
-    ],
-  );
-
-  SideTitles get rightTitles => SideTitles(
-    getTitlesWidget: rightTitleWidgets,
-    showTitles: true,
-    interval: 20,
-    reservedSize: 40,
-  );
-
-  Widget rightTitleWidgets(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = '0%';
-        break;
-      case 20:
-        text = '20%';
-        break;
-      case 40:
-        text = '40%';
-        break;
-      case 60:
-        text = '60%';
-        break;
-      case 80:
-        text = '80%';
-        break;
-      case 100:
-        text = '100%';
-        break;
-      default:
-        return Container();
-    }
-
-    return Text(text,
-        style: TextStyle(
-          color: AppColors.whiteColor,
-          fontSize: 12,
-        ),
-        textAlign: TextAlign.center);
-  }
-
-  SideTitles get bottomTitles => SideTitles(
-    showTitles: true,
-    reservedSize: 32,
-    interval: 1,
-    getTitlesWidget: bottomTitleWidgets,
-  );
-
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    var style = TextStyle(
-      color: AppColors.whiteColor,
-      fontSize: 12,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 1:
-        text = Text('Sun', style: style);
-        break;
-      case 2:
-        text = Text('Mon', style: style);
-        break;
-      case 3:
-        text = Text('Tue', style: style);
-        break;
-      case 4:
-        text = Text('Wed', style: style);
-        break;
-      case 5:
-        text = Text('Thu', style: style);
-        break;
-      case 6:
-        text = Text('Fri', style: style);
-        break;
-      case 7:
-        text = Text('Sat', style: style);
-        break;
-      default:
-        text = const Text('');
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 10,
-      child: text,
-    );
-  }
 }

@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/exercises_row.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class ExercisesSetSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          sObj["name"].toString(),
+          sObj["name"].toString().intl(context),
           style: TextStyle(
               color: AppColors.blackColor, fontSize: 12, fontWeight: FontWeight.w500),
         ),

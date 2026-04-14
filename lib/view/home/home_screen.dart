@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "BMI (Body Mass Index)",
+                                  "bmi".intl(context),
                                   style: TextStyle(
                                       color: AppColors.whiteColor,
                                       fontSize: 14,
@@ -370,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           0, 0, bounds.width, bounds.height));
                                 },
                                 child: Text(
-                                  "78 BPM",
+                                  "heart_rate_value".intl(context),
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 18,
@@ -456,7 +456,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   return lineBarsSpot.map((lineBarSpot) {
                                     return LineTooltipItem(
                                       //lineBarSpot.y.toString(),
-                                      "${lineBarSpot.x.toInt()} mins ago",
+                                      "${lineBarSpot.x.toInt()}${"minutes_ago".intl(context)}",
                                       const TextStyle(
                                           color: Colors.white,
                                           fontSize: 10,
@@ -539,7 +539,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         0, 0, bounds.width, bounds.height));
                               },
                               child: Text(
-                                "4 Liters",
+                                "water_intake_value".intl(context),
                                 style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 14,
@@ -677,7 +677,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           0, 0, bounds.width, bounds.height));
                                 },
                                 child: Text(
-                                  "8h 20m",
+                                  "sleep_value".intl(context),
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 14,
@@ -728,7 +728,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           0, 0, bounds.width, bounds.height));
                                 },
                                 child: Text(
-                                  "760 kCal",
+                                  "calories_value".intl(context),
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 14,
@@ -893,7 +893,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
                               return lineBarsSpot.map((lineBarSpot) {
                                 return LineTooltipItem(
-                                  "${lineBarSpot.x.toInt()} mins ago",
+                                  "${lineBarSpot.x.toInt()}${"minutes_ago".intl(context)}",
                                   const TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -912,10 +912,87 @@ class _HomeScreenState extends State<HomeScreen> {
                             leftTitles: AxisTitles(),
                             topTitles: AxisTitles(),
                             bottomTitles: AxisTitles(
-                              sideTitles: bottomTitles,
+                              sideTitles: SideTitles(
+                                showTitles: true,
+                                reservedSize: 32,
+                                interval: 1,
+                                getTitlesWidget: (value, meta) {
+                                  var style = TextStyle(
+                                    color: AppColors.grayColor,
+                                    fontSize: 12,
+                                  );
+                                  Widget text;
+                                  switch (value.toInt()) {
+                                    case 1:
+                                      text = Text("sun".intl(context), style: style);
+                                      break;
+                                    case 2:
+                                      text = Text("mon".intl(context), style: style);
+                                      break;
+                                    case 3:
+                                      text = Text("tue".intl(context), style: style);
+                                      break;
+                                    case 4:
+                                      text = Text("wed".intl(context), style: style);
+                                      break;
+                                    case 5:
+                                      text = Text("thu".intl(context), style: style);
+                                      break;
+                                    case 6:
+                                      text = Text("fri".intl(context), style: style);
+                                      break;
+                                    case 7:
+                                      text = Text("sat".intl(context), style: style);
+                                      break;
+                                    default:
+                                      text = const Text('');
+                                      break;
+                                  }
+                                  return SideTitleWidget(
+                                    axisSide: meta.axisSide,
+                                    space: 10,
+                                    child: text,
+                                  );
+                                },
+                              ),
                             ),
                             rightTitles: AxisTitles(
-                              sideTitles: rightTitles,
+                              sideTitles: SideTitles(
+                                getTitlesWidget: (value, meta) {
+                                  String text;
+                                  switch (value.toInt()) {
+                                    case 0:
+                                      text = '0%';
+                                      break;
+                                    case 20:
+                                      text = '20%';
+                                      break;
+                                    case 40:
+                                      text = '40%';
+                                      break;
+                                    case 60:
+                                      text = '60%';
+                                      break;
+                                    case 80:
+                                      text = '80%';
+                                      break;
+                                    case 100:
+                                      text = '100%';
+                                      break;
+                                    default:
+                                      return Container();
+                                  }
+                                  return Text(text,
+                                      style: TextStyle(
+                                        color: AppColors.grayColor,
+                                        fontSize: 12,
+                                      ),
+                                      textAlign: TextAlign.center);
+                                },
+                                showTitles: true,
+                                interval: 20,
+                                reservedSize: 40,
+                              ),
                             )),
                         gridData: FlGridData(
                           show: true,
@@ -1021,90 +1098,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SideTitles get rightTitles => SideTitles(
-    getTitlesWidget: rightTitleWidgets,
-    showTitles: true,
-    interval: 20,
-    reservedSize: 40,
-  );
-
-  Widget rightTitleWidgets(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = '0%';
-        break;
-      case 20:
-        text = '20%';
-        break;
-      case 40:
-        text = '40%';
-        break;
-      case 60:
-        text = '60%';
-        break;
-      case 80:
-        text = '80%';
-        break;
-      case 100:
-        text = '100%';
-        break;
-      default:
-        return Container();
-    }
-
-    return Text(text,
-        style: TextStyle(
-          color: AppColors.grayColor,
-          fontSize: 12,
-        ),
-        textAlign: TextAlign.center);
-  }
-
-  SideTitles get bottomTitles => SideTitles(
-    showTitles: true,
-    reservedSize: 32,
-    interval: 1,
-    getTitlesWidget: bottomTitleWidgets,
-  );
-
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    var style = TextStyle(
-      color: AppColors.grayColor,
-      fontSize: 12,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 1:
-        text = Text('Sun', style: style);
-        break;
-      case 2:
-        text = Text('Mon', style: style);
-        break;
-      case 3:
-        text = Text('Tue', style: style);
-        break;
-      case 4:
-        text = Text('Wed', style: style);
-        break;
-      case 5:
-        text = Text('Thu', style: style);
-        break;
-      case 6:
-        text = Text('Fri', style: style);
-        break;
-      case 7:
-        text = Text('Sat', style: style);
-        break;
-      default:
-        text = const Text('');
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 10,
-      child: text,
-    );
-  }
 }

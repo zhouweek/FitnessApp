@@ -1,4 +1,5 @@
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -61,14 +62,14 @@ class StepDetailRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                sObj["title"].toString(),
+                sObj["title"].toString().intl(context),
                 style: const TextStyle(
                   color: AppColors.blackColor,
                   fontSize: 14,
                 ),
               ),
               Text(
-                sObj["detail"].toString(),
+                sObj["detail"].toString().intl(context),
                 style: const TextStyle(color: AppColors.grayColor, fontSize: 12),
               ),
             ],

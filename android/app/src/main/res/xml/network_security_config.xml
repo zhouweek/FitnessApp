@@ -8,7 +8,7 @@
     </base-config>
     <!-- 开发环境局域网IP配置，如需修改请同时修改 lib/utils/api_config.dart -->
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.1.116</domain>
+        <domain includeSubdomains="true">10.82.70.93</domain>
     </domain-config>
     <!-- 可选：添加本地开发配置 -->
     <domain-config cleartextTrafficPermitted="true">

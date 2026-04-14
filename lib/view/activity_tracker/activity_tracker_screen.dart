@@ -305,7 +305,45 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                         bottomTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
-                            getTitlesWidget: getTitles,
+                            getTitlesWidget: (value, meta) {
+                              var style = const TextStyle(
+                                color: AppColors.grayColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              );
+                              Widget text;
+                              switch (value.toInt()) {
+                                case 0:
+                                  text = Text("sun".intl(context), style: style);
+                                  break;
+                                case 1:
+                                  text = Text("mon".intl(context), style: style);
+                                  break;
+                                case 2:
+                                  text = Text("tue".intl(context), style: style);
+                                  break;
+                                case 3:
+                                  text = Text("wed".intl(context), style: style);
+                                  break;
+                                case 4:
+                                  text = Text("thu".intl(context), style: style);
+                                  break;
+                                case 5:
+                                  text = Text("fri".intl(context), style: style);
+                                  break;
+                                case 6:
+                                  text = Text("sat".intl(context), style: style);
+                                  break;
+                                default:
+                                  text = Text('', style: style);
+                                  break;
+                              }
+                              return SideTitleWidget(
+                                axisSide: meta.axisSide,
+                                space: 16,
+                                child: text,
+                              );
+                            },
                             reservedSize: 38,
                           ),
                         ),
@@ -368,45 +406,7 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
     );
   }
 
-  Widget getTitles(double value, TitleMeta meta) {
-    var style = const TextStyle(
-      color: AppColors.grayColor,
-      fontWeight: FontWeight.w500,
-      fontSize: 12,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 0:
-        text =  Text('Sun', style: style);
-        break;
-      case 1:
-        text =  Text('Mon', style: style);
-        break;
-      case 2:
-        text =  Text('Tue', style: style);
-        break;
-      case 3:
-        text =  Text('Wed', style: style);
-        break;
-      case 4:
-        text =  Text('Thu', style: style);
-        break;
-      case 5:
-        text =  Text('Fri', style: style);
-        break;
-      case 6:
-        text =  Text('Sat', style: style);
-        break;
-      default:
-        text =  Text('', style: style);
-        break;
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
-    );
-  }
+
 
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
     switch (i) {

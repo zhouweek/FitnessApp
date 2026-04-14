@@ -39,47 +39,47 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
 
   List exercisesArr = [
     {
-      "name": "Set 1",
+      "name": "set_1",
       "set": [
-        {"image": "assets/images/img_1.png", "title": "Warm Up", "value": "05:00"},
+        {"image": "assets/images/img_1.png", "title": "warm_up", "value": "05:00"},
         {
           "image": "assets/images/img_2.png",
-          "title": "Jumping Jack",
+          "title": "jumping_jack",
           "value": "12x"
         },
-        {"image": "assets/images/img_1.png", "title": "Skipping", "value": "15x"},
-        {"image": "assets/images/img_2.png", "title": "Squats", "value": "20x"},
+        {"image": "assets/images/img_1.png", "title": "skipping", "value": "15x"},
+        {"image": "assets/images/img_2.png", "title": "squats", "value": "20x"},
         {
           "image": "assets/images/img_1.png",
-          "title": "Arm Raises",
+          "title": "arm_raises",
           "value": "00:53"
         },
         {
           "image": "assets/images/img_2.png",
-          "title": "Rest and Drink",
+          "title": "rest_and_drink",
           "value": "02:00"
         },
       ],
     },
     {
-      "name": "Set 2",
+      "name": "set_2",
       "set": [
-        {"image": "assets/images/img_1.png", "title": "Warm Up", "value": "05:00"},
+        {"image": "assets/images/img_1.png", "title": "warm_up", "value": "05:00"},
         {
           "image": "assets/images/img_2.png",
-          "title": "Jumping Jack",
+          "title": "jumping_jack",
           "value": "12x"
         },
-        {"image": "assets/images/img_1.png", "title": "Skipping", "value": "15x"},
-        {"image": "assets/images/img_2.png", "title": "Squats", "value": "20x"},
+        {"image": "assets/images/img_1.png", "title": "skipping", "value": "15x"},
+        {"image": "assets/images/img_2.png", "title": "squats", "value": "20x"},
         {
           "image": "assets/images/img_1.png",
-          "title": "Arm Raises",
+          "title": "arm_raises",
           "value": "00:53"
         },
         {
           "image": "assets/images/img_2.png",
-          "title": "Rest and Drink",
+          "title": "rest_and_drink",
           "value": "02:00"
         },
       ],
@@ -193,14 +193,14 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.dObj["title"].toString(),
+                                  widget.dObj["title"].toString().intl(context),
                                   style: TextStyle(
                                       color: AppColors.blackColor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
-                                  "${widget.dObj["exercises"].toString()} | ${widget.dObj["time"].toString()} | 320 Calories Burn",
+                                  "${widget.dObj["exercises"].toString().intl(context)} | ${widget.dObj["time"].toString().intl(context)} | ${"calories_burn_320".intl(context)}",
                                   style: TextStyle(
                                       color: AppColors.grayColor, fontSize: 12),
                                 ),
@@ -294,7 +294,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          yObj["title"].toString(),
+                                          yObj["title"].toString().intl(context),
                                           style: TextStyle(
                                               color: AppColors.blackColor,
                                               fontSize: 12),

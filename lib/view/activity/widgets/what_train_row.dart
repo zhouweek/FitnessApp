@@ -1,3 +1,4 @@
+import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -31,7 +32,7 @@ class WhatTrainRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      wObj["title"].toString(),
+                      wObj["title"].toString().intl(context),
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 14,
@@ -41,7 +42,7 @@ class WhatTrainRow extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      "${wObj["exercises"].toString()} | ${ wObj["time"].toString() }" ,
+                      "${wObj["exercises"].toString().intl(context)} | ${ wObj["time"].toString().intl(context) }" ,
                       style: TextStyle(
                         color: AppColors.grayColor,
                         fontSize: 12,
@@ -54,7 +55,7 @@ class WhatTrainRow extends StatelessWidget {
                       width: 100,
                       height: 30,
                       child: RoundButton(
-                          title: "View More",
+                          title: "view_more".intl(context),
                           onPressed: () {}),
                     )
                   ],
