@@ -46,7 +46,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       // 准备请求数据
       final Map<String, dynamic> profileData = {
         'gender': selectedGender,
-        'age': selectedDate != null ? _calculateAge(selectedDate!) : null,
+        'birthday': selectedDate?.toIso8601String(),
         'weight': weightController.text.isNotEmpty ? double.parse(weightController.text) : null,
         'height': heightController.text.isNotEmpty ? double.parse(heightController.text) : null,
       };

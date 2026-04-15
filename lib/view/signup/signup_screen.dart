@@ -74,8 +74,8 @@ class _SignupScreenState extends State<SignupScreen> {
             response['data']['refresh_token'],
           );
           // 保存用户信息
-          if (response['data'] is Map<String, dynamic>) {
-            await ApiService().saveUserInfo(response['data']);
+          if (response['data'].containsKey('user') && response['data']['user'] is Map<String, dynamic>) {
+            await ApiService().saveUserInfo(response['data']['user']);
           }
         }
         // 注册成功，跳转到完善个人资料页面
