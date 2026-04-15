@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<int> showingTooltipOnSpots = [21];
   bool isLoggedIn = false;
   String? username;
+  String? name;
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       isLoggedIn = ApiService().isLoggedIn;
       username = ApiService().username;
+      name = ApiService().name;
     });
   }
 
@@ -216,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Text(
-                                  username ?? "stefani_wong".intl(context),
+                                  (name ?? username) ?? "stefani_wong".intl(context),
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 20,

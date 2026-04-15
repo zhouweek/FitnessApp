@@ -14,11 +14,13 @@ class ApiService {
 
   String? token;
   String? username;
+  String? name;
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     token = prefs.getString('access_token');
     username = prefs.getString('username');
+    name = prefs.getString('name');
     
     final ioClient = HttpClient()
       ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
@@ -34,6 +36,10 @@ class ApiService {
 
   Future<void> saveUserInfo(Map<String, dynamic> userInfo) async {
     final prefs = await SharedPreferences.getInstance();
+    if (userInfo.containsKey('name') && userInfo['name'] != null) {
+      name = userInfo['name'].toString();
+      await prefs.setString('name', name!);
+    }
     if (userInfo.containsKey('username')) {
       username = userInfo['username'].toString();
       await prefs.setString('username', username!);
@@ -48,9 +54,11 @@ class ApiService {
     await prefs.remove('access_token');
     await prefs.remove('refresh_token');
     await prefs.remove('username');
+    await prefs.remove('name');
     await prefs.remove('phone');
     token = null;
     username = null;
+    name = null;
   }
 
   bool get isLoggedIn => token != null;
