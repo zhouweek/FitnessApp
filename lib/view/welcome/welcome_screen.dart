@@ -1,5 +1,6 @@
 import 'package:fitnessapp/utils/app_colors.dart';
-import 'package:fitnessapp/view/login/login_screen.dart';
+import 'package:fitnessapp/utils/api_service.dart';
+import 'package:fitnessapp/view/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../common_widgets/round_gradient_button.dart';
@@ -13,6 +14,8 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    final username = ApiService().username ?? "user";
+    
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: SafeArea(
@@ -26,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
                   width: media.width * 0.75, fit: BoxFit.fitWidth),
               SizedBox(height: media.width * 0.05),
               Text(
-                "welcome_stefani".intl(context),
+                "${"welcome".intl(context)}, $username",
                 style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 20,
@@ -47,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
               RoundGradientButton(
                 title: "go_to_home".intl(context),
                 onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.routeName);
+                  Navigator.pushNamedAndRemoveUntil(context, DashboardScreen.routeName, (route) => false);
                 },
               )
             ],

@@ -169,27 +169,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: isLoading ? null : () { _login(); },
               ),
               SizedBox(height: 10),
-              TextButton(
-                onPressed: () async {
-                  try {
-                    final response = await ApiService().post(
-                      '/debug',
-                      body: {'test': 'flutter'},
-                      withAuth: false,
-                    );
-                    print('Debug response: $response');
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Debug response: ${response.toString().substring(0, 100)}...')),
-                    );
-                  } catch (e) {
-                    print('Debug error: $e');
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Debug error: $e')),
-                    );
-                  }
-                },
-                child: Text('Test Debug Endpoint', style: TextStyle(color: AppColors.secondaryColor1)),
-              ),
 
               TextButton(
                   onPressed: () {
