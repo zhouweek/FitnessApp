@@ -1,12 +1,16 @@
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
 import 'package:fitnessapp/i18n/intl_extension.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
+import 'package:fitnessapp/utils/api_service.dart';
+import 'package:fitnessapp/utils/database_helper.dart';
+import 'package:fitnessapp/view/finish_workout/finish_workout_screen.dart';
+import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/exercises_set_section.dart';
 import 'package:fitnessapp/view/workour_detail_view/widgets/icon_title_next_row.dart';
 import 'package:fitnessapp/view/workout_schedule_view/workout_schedule_view.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../common_widgets/round_button.dart';
 import 'exercises_stpe_details.dart';
 
 class WorkoutDetailView extends StatefulWidget {
@@ -18,6 +22,26 @@ class WorkoutDetailView extends StatefulWidget {
 }
 
 class _WorkoutDetailViewState extends State<WorkoutDetailView> {
+
+  Future<String?> _getPhone() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('phone');
+  }
+
+  String _getWorkoutTypeFromTitle(String title) {
+    final lowerTitle = title.toLowerCase();
+    if (lowerTitle.contains('fullbody') || lowerTitle.contains('full_body')) {
+      return 'full_body_workout';
+    } else if (lowerTitle.contains('lowerbody') || lowerTitle.contains('lower_body')) {
+      return 'lower_body_workout';
+    } else if (lowerTitle.contains('ab')) {
+      return 'ab_workout';
+    } else if (lowerTitle.contains('upperbody') || lowerTitle.contains('upper_body')) {
+      return 'full_body_workout';
+    }
+    return 'full_body_workout';
+  }
+
   List latestArr = [
     {
       "image": "assets/images/Workout1.png",
@@ -357,7 +381,29 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      RoundGradientButton(title: "start_workout".intl(context), onPressed: () {})
+                      RoundGradientButton(title: "start_workout".intl(context), onPressed: () async {
+                        if (!ApiService().isLoggedIn) {
+                          await Navigator.pushNamed(context, LoginScreen.routeName);
+                          if (!ApiService().isLoggedIn) return;
+                        }
+                        final phone = await _getPhone();
+                        if (phone == null) return;
+                        final now = DateTime.now();
+                        final dateStr = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+                        final workoutType = _getWorkoutTypeFromTitle(widget.dObj["title"].toString());
+                        final record = WorkoutRecord(
+                          phone: phone,
+                          workoutType: workoutType,
+                          duration: int.tryParse(widget.dObj["time"]?.toString().replaceAll(RegExp(r'[^0-9]'), '') ?? '30') ?? 30,
+                          calories: 320.0,
+                          date: dateStr,
+                          image: WorkoutRecord.getImageForType(workoutType),
+                        );
+                        await DatabaseHelper().insertWorkoutRecord(record);
+                        if (context.mounted) {
+                          Navigator.pushNamed(context, FinishWorkoutScreen.routeName);
+                        }
+                      })
                     ],
                   ),
                 )

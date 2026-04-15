@@ -50,6 +50,8 @@ dependencies:
     sdk: flutter
   calendar_agenda:
     path: dev_lib/calendar_agenda/
+  sqflite: ^2.3.0
+  path: ^1.8.3
 
 
 flutter_native_splash:

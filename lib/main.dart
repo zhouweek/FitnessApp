@@ -3,17 +3,13 @@ import 'package:fitnessapp/routes.dart';
 import 'package:fitnessapp/utils/api_service.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/dashboard/dashboard_screen.dart';
-import 'package:fitnessapp/view/login/login_screen.dart';
-import 'package:fitnessapp/view/profile/complete_profile_screen.dart';
-import 'package:fitnessapp/view/welcome/welcome_screen.dart';
-import 'package:fitnessapp/view/your_goal/your_goal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+
 void main() async {
-  // 确保Flutter绑定已初始化
   WidgetsFlutterBinding.ensureInitialized();
-  // 初始化API服务
   await ApiService().init();
   runApp(const MyApp());
 }
@@ -21,7 +17,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,9 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.primaryColor1,
         useMaterial3: true,
-        fontFamily: "Poppins"
+        fontFamily: "Poppins",
       ),
       home: const DashboardScreen(),
+      navigatorObservers: [routeObserver],
       localizationsDelegates: [
         Localization.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -41,8 +37,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-        Locale('en', ''), // English
-        Locale('zh', ''), // Chinese
+        Locale('en', ''),
+        Locale('zh', ''),
       ],
     );
   }

@@ -1,10 +1,11 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/utils/api_service.dart';
 import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:fitnessapp/view/profile/activity_history_screen.dart';
+import 'package:fitnessapp/view/profile/contact_us_screen.dart';
 import 'package:fitnessapp/view/profile/edit_profile_screen.dart';
-import 'package:fitnessapp/view/profile/workout_progress_screen.dart';
+import 'package:fitnessapp/view/profile/achievement_screen.dart';
+import 'package:fitnessapp/view/profile/privacy_policy_screen.dart';
 import 'package:fitnessapp/view/profile/widgets/setting_row.dart';
 import 'package:fitnessapp/view/profile/widgets/title_subtitle_cell.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
 
-  bool positive = false;
   bool isLoading = false;
   Map<String, dynamic>? userData;
   
@@ -48,6 +48,10 @@ class _UserProfileState extends State<UserProfile> {
     if (ApiService().token != null) {
       _fetchUserProfile();
     }
+  }
+
+  void refreshData() {
+    _fetchUserProfile();
   }
 
   Future<void> _fetchUserProfile() async {
@@ -83,17 +87,11 @@ class _UserProfileState extends State<UserProfile> {
       "name": "activity_history",
       "tag": "3"
     },
-    {
-      "image": "assets/icons/p_workout.png",
-      "name": "workout_progress",
-      "tag": "4"
-    }
   ];
 
   List otherArr = [
     {"image": "assets/icons/p_contact.png", "name": "contact_us", "tag": "5"},
     {"image": "assets/icons/p_privacy.png", "name": "privacy_policy", "tag": "6"},
-    {"image": "assets/icons/p_setting.png", "name": "setting", "tag": "7"},
     {"image": "assets/icons/lock_icon.png", "name": "logout", "tag": "8"},
   ];
 
@@ -114,24 +112,7 @@ class _UserProfileState extends State<UserProfile> {
               fontWeight: FontWeight.w700),
         ),
         actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppColors.lightGrayColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.asset(
-                "assets/icons/more_icon.png",
-                width: 12,
-                height: 12,
-                fit: BoxFit.contain,
-              ),
-            ),
-          )
+          
         ],
       ),
       body: SingleChildScrollView(
@@ -286,121 +267,16 @@ class _UserProfileState extends State<UserProfile> {
                           icon: iObj["image"].toString(),
                           title: iObj["name"].toString().intl(context),
                           onPressed: () {
-                            if (iObj["name"].toString() == "activity_history") {
+                            if (iObj["name"].toString() == "personal_data") {
+                              Navigator.pushNamed(context, EditProfileScreen.routeName);
+                            } else if (iObj["name"].toString() == "achievement") {
+                              Navigator.pushNamed(context, AchievementScreen.routeName);
+                            } else if (iObj["name"].toString() == "activity_history") {
                               Navigator.pushNamed(context, ActivityHistoryScreen.routeName);
-                            } else if (iObj["name"].toString() == "workout_progress") {
-                              Navigator.pushNamed(context, WorkoutProgressScreen.routeName);
                             }
                           },
                         );
                       },
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Container(
-                padding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: const [
-                      BoxShadow(color: Colors.black12, blurRadius: 2)
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "notification".intl(context),
-                      style: TextStyle(
-                        color: AppColors.blackColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/icons/p_notification.png",
-                                height: 15, width: 15, fit: BoxFit.contain),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "pop_up_notification".intl(context),
-                                style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            CustomAnimatedToggleSwitch<bool>(
-                              current: positive,
-                              values: [false, true],
-                              dif: 0.0,
-                              indicatorSize: Size.square(30.0),
-                              animationDuration:
-                              const Duration(milliseconds: 200),
-                              animationCurve: Curves.linear,
-                              onChanged: (b) => setState(() => positive = b),
-                              iconBuilder: (context, local, global) {
-                                return const SizedBox();
-                              },
-                              defaultCursor: SystemMouseCursors.click,
-                              onTap: () => setState(() => positive = !positive),
-                              iconsTappable: false,
-                              wrapperBuilder: (context, global, child) {
-                                return Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Positioned(
-                                        left: 10.0,
-                                        right: 10.0,
-
-                                        height: 30.0,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: AppColors.secondaryG),
-                                            borderRadius:
-                                            const BorderRadius.all(
-                                                Radius.circular(30.0)),
-                                          ),
-                                        )),
-                                    child,
-                                  ],
-                                );
-                              },
-                              foregroundIndicatorBuilder: (context, global) {
-                                return SizedBox.fromSize(
-                                  size: const Size(10, 10),
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      color: AppColors.whiteColor,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(50.0)),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color: Colors.black38,
-                                            spreadRadius: 0.05,
-                                            blurRadius: 1.1,
-                                            offset: Offset(0.0, 0.8))
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ]),
                     )
                   ],
                 ),
@@ -446,7 +322,11 @@ class _UserProfileState extends State<UserProfile> {
                           icon: iObj["image"].toString(),
                           title: iObj["name"].toString().intl(context),
                           onPressed: () {
-                            if (iObj["name"].toString() == "logout") {
+                            if (iObj["name"].toString() == "contact_us") {
+                              Navigator.pushNamed(context, ContactUsScreen.routeName);
+                            } else if (iObj["name"].toString() == "privacy_policy") {
+                              Navigator.pushNamed(context, PrivacyPolicyScreen.routeName);
+                            } else if (iObj["name"].toString() == "logout") {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
