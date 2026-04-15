@@ -10,7 +10,7 @@ from app.core.config import settings
 router = APIRouter(prefix="/auth", tags=["认证"])
 
 
-@router.post("/register", response_model=ResponseModel[UserResponse])
+@router.post("/register", response_model=ResponseModel[LoginResponse])
 def register(user_data: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(
         (User.username == user_data.username) | (User.phone == user_data.phone)
@@ -39,7 +39,25 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
     
-    return ResponseModel(data=UserResponse.model_validate(user))
+    access_token = create_access_token(data={"sub": str(user.id)})
+    refresh_token = create_refresh_token(data={"sub": str(user.id)})
+    
+    expires_at = datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    user_token = UserToken(
+        user_id=user.id,
+        access_token=access_token,
+        refresh_token=refresh_token,
+        expires_at=expires_at
+    )
+    db.add(user_token)
+    db.commit()
+    
+    return ResponseModel(data=LoginResponse(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        token_type="bearer",
+        user=UserResponse.model_validate(user)
+    ))
 
 
 @router.post("/login", response_model=ResponseModel[LoginResponse])
